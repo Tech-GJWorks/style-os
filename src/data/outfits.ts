@@ -1,0 +1,198 @@
+import type { Outfit, Season } from './types';
+
+const S: Record<string, Season[]> = {
+  A: ['summer', 'monsoon', 'winter', 'transitional'],
+  W: ['summer', 'monsoon', 'transitional'],
+  C: ['winter', 'transitional'],
+  S: ['summer'],
+  M: ['monsoon'],
+  X: ['winter'],
+  T: ['summer', 'transitional'],
+};
+
+export const collections: { id: string; name: string; blurb: string }[] = [
+  { id: 'polo', name: 'Polo shirts', blurb: 'The piece you already reach for. It sits between a T-shirt and a shirt.' },
+  { id: 'tees', name: 'Crewneck & Henley T-shirts', blurb: 'Weight matters more than brand: 180–220 GSM skims, while thin jersey clings.' },
+  { id: 'linen', name: 'Linen shirts', blurb: "Bengaluru's best summer fabric, as long as you accept the creases." },
+  { id: 'oxford', name: 'Oxford shirts', blurb: 'The most versatile shirt in menswear. It works at the office, on a date and when travelling.' },
+  { id: 'cotton', name: 'Cotton shirts', blurb: 'Chambray, poplin, herringbone and flannel: one fibre, many characters.' },
+  { id: 'twill', name: 'Twill shirts', blurb: 'Diagonal weave, soft drape, fewer creases than poplin.' },
+  { id: 'utility', name: 'Utility shirts', blurb: 'Pockets and structure: rugged, casual and very forgiving.' },
+  { id: 'band', name: 'Band-collar shirts', blurb: 'Collarless and modern, with a light Indo-Western edge.' },
+  { id: 'printed', name: 'Printed shirts', blurb: 'Micro-prints and Cuban collars that add personality without noise.' },
+  { id: 'chinos', name: 'Chinos', blurb: 'Your trouser workhorse. Colour is the variable.' },
+  { id: 'jeans', name: 'Jeans', blurb: 'Dark, clean and straight.' },
+  { id: 'formal-trousers', name: 'Formal trousers', blurb: 'Wool-blend and pleated: the most flattering trouser for your shape.' },
+  { id: 'cargo', name: 'Cargo pants', blurb: 'Off-duty utility with low-profile pockets.' },
+  { id: 'overshirts', name: 'Overshirts', blurb: 'The casual vertical line.' },
+  { id: 'jackets', name: 'Jackets', blurb: 'Bomber, chore, field, Harrington: structure for cooler evenings.' },
+  { id: 'blazers', name: 'Blazers', blurb: 'The single best proportion tool for your body.' },
+  { id: 'knitwear', name: 'Sweaters & knitwear', blurb: 'Fine gauge only. For Bengaluru winters and air-conditioned offices.' },
+  { id: 'suits', name: 'Formal suits', blurb: 'One great suit outperforms three average ones.' },
+  { id: 'date', name: 'Date-night outfits', blurb: 'Warm, deep colours that photograph well in low light.' },
+  { id: 'travel', name: 'Travel outfits', blurb: 'Low-crease, layered and comfortable for six hours.' },
+  { id: 'summer', name: 'Summer outfits', blurb: 'Breathability first, then colour.' },
+  { id: 'winter', name: 'Winter outfits', blurb: 'Layers for Bengaluru mornings and North-India trips.' },
+  { id: 'traditional', name: 'Indian traditional outfits', blurb: 'Kurtas, Nehru jackets and festival lunches.' },
+  { id: 'wedding', name: 'Wedding & festive outfits', blurb: 'Engagement, reception, sangeet and the arranged-marriage meeting.' },
+];
+
+type Row = [string, string, string, string, string, string | null, string[], string[], string[], keyof typeof S, string, string[], 1 | 2 | 3, '₹' | '₹₹' | '₹₹₹', string, ('report' | 'photo')?];
+
+const BELT = 'belt-leather:brown';
+const TBELT = 'belt-leather:tan';
+const GL = 'glasses:gold-metal';
+const SMART = 'watch-smart:black';
+const LW = 'watch-leather:tan';
+const BW = 'watch-leather:brown';
+const SUN = 'sunglasses:gold-metal';
+
+const rows: Row[] = [
+  // POLO
+  ['polo', 'Your 10 Nov mirror look', 'polo:navy', 'chinos:beige', 'sneaker-white:white', null, [], [SMART, GL], ['casual', 'weekend', 'coffee', 'office'], 'A', 'Warm, dry', ['approachable', 'relaxed'], 1, '₹', 'Navy and beige is a classic, reliable pairing, and it suits you. The one weakness is strong light-over-dark contrast right at the waist, which draws a horizontal line across the midsection. Fixes: tonal chinos (stone or camel), or an open overshirt to bring back vertical lines.', 'photo'],
+  ['polo', 'Mustard polo smart casual', 'polo:mustard', 'chinos:stone', 'loafer-suede:brown', null, [BELT], [LW, GL], ['casual', 'coffee', 'date', 'business'], 'A', 'Warm', ['confident', 'friendly'], 2, '₹₹', 'From your report (Casual Look 4). Mustard is one of your main colours and lights up warm skin, while stone keeps the lower half quiet. Swapping the brown "casual shoes" for suede loafers makes it smart casual.', 'report'],
+  ['polo', 'Knitted polo, tonal browns', 'polo-knit:chocolate', 'chinos:camel', 'loafer:tan', null, [TBELT], [LW, GL], ['date', 'dinner', 'business'], 'C', 'Cool evening', ['sophisticated', 'refined'], 2, '₹₹', 'One family of colour from shoulder to shoe is the oldest elongating trick there is. The textured knit drapes rather than clings.'],
+  ['polo', 'Olive polo, weekend', 'polo:olive', 'jeans-slim-straight:indigo', 'sneaker-white:white', null, [], [SMART, SUN], ['casual', 'weekend', 'outdoor'], 'A', 'Any', ['relaxed', 'approachable'], 1, '₹', 'Olive is a neutral for you and dark indigo is a neutral too, so the white sneaker supplies the contrast. Easy to wear and hard to get wrong.'],
+  ['polo', 'Navy polo + blue jeans (report)', 'polo:navy', 'jeans-straight:mid-denim', 'slipon:stone', null, [], [SUN], ['travel', 'casual'], 'A', 'Mixed', ['relaxed'], 1, '₹', 'From your report (Travel Look 4). It is fine for transit, but navy above mid-blue reads as all-blue. Try dark indigo or beige chinos to separate the halves.', 'report'],
+  ['polo', 'Teal polo, office Friday', 'polo:teal', 'chinos:beige', 'loafer-suede:brown', null, [BELT], [LW, GL], ['office', 'business', 'coffee'], 'A', 'AC office', ['distinctive', 'calm'], 2, '₹₹', 'Deep teal is your standout accent. Against beige it is distinctive yet calm, and the brown leather keeps it warm.'],
+  // TEES
+  ['tees', 'Cream henley day out', 'henley:ivory', 'chinos:beige', 'loafer-suede:brown', null, [], [BW, 'bracelet:brown', SUN], ['casual', 'weekend', 'coffee'], 'W', 'Warm', ['relaxed', 'approachable'], 1, '₹', 'From your report (Casual Look 1). Cream and beige are tonal, so there is no waist break. The henley placket adds a vertical line.', 'report'],
+  ['tees', 'Heavyweight tee + open overshirt', 'tee-crew:ivory', 'jeans-slim-straight:indigo', 'sneaker-white:white', 'overshirt:olive', [], [SMART], ['casual', 'weekend', 'friends'], 'A', 'Mild', ['relaxed', 'contemporary'], 1, '₹', 'The open overshirt turns a plain tee into two long vertical panels. This is the casual version of the blazer effect.'],
+  ['tees', 'Rust henley, dark denim', 'henley:rust', 'jeans-straight:indigo', 'desert:camel', null, [BELT], [BW], ['date', 'casual', 'friends'], 'C', 'Cool', ['warm', 'confident'], 2, '₹', 'Rust is a main colour for you. Dark denim calms it down and camel suede boots repeat the warmth at the feet.'],
+  ['tees', 'Olive long-sleeve henley', 'henley-ls:olive', 'chinos:stone', 'sneaker-suede:taupe', null, [], [SMART], ['travel', 'casual'], 'C', 'Cool, AC', ['grounded', 'relaxed'], 1, '₹', 'Olive and stone is the "grounded" combination: relaxed, earthy and easy on warm skin.'],
+  ['tees', 'Chocolate tee + camel chinos', 'tee-crew:chocolate', 'chinos:camel', 'sneaker-white:white', null, [], [LW], ['casual', 'movies', 'coffee'], 'A', 'Any', ['calm', 'warm'], 1, '₹', 'A dark top over a mid-tone bottom keeps the eye on your face and shoulders.'],
+  // LINEN
+  ['linen', 'Ecru linen, olive trousers', 'linen-shirt:warm-white', 'linen-trousers:olive', 'loafer-suede:brown', null, [], [BW, SUN], ['date', 'brunch', 'outdoor', 'beach'], 'S', 'Hot, dry', ['relaxed', 'elegant'], 2, '₹₹', 'This is linen at its best. Both pieces breathe, and the light-over-mid contrast is soft. Wear it untucked if the hem is straight.'],
+  ['linen', 'Terracotta linen shirt', 'linen-shirt:terracotta', 'chinos:beige', 'espadrille:ivory', null, [], [SUN, 'bracelet:brown'], ['beach', 'resort', 'brunch', 'date'], 'S', 'Hot', ['warm', 'expressive'], 2, '₹₹', 'Terracotta is a main colour for you. In linen it is the strongest summer look in your palette.'],
+  ['linen', 'Olive linen, cream chinos', 'linen-shirt:olive', 'chinos:ivory', 'loafer:brown', null, [BELT], [BW, SUN], ['date', 'lunch', 'family'], 'W', 'Warm', ['grounded', 'approachable'], 2, '₹₹', "This is the example from your brief: olive linen over cream. The brown loafers and belt hold it together."],
+  ['linen', 'Linen-cotton navy for the office', 'linen-cotton-shirt:navy', 'chinos:stone', 'loafer-suede:brown', null, [BELT], [LW, GL], ['office', 'business', 'client'], 'A', 'Warm, AC', ['composed', 'professional'], 2, '₹₹', 'The linen-cotton blend creases about half as much as pure linen, so it survives a full office day.'],
+  ['linen', 'All-ivory resort', 'linen-shirt:ivory', 'linen-trousers:beige', 'sandal:tan', null, [], [SUN, 'bracelet:brown'], ['beach', 'resort'], 'S', 'Very hot', ['relaxed', 'refined'], 3, '₹₹', 'An all-light tonal look is elegant but needs a tan or warm skin to work, which you have. Keep everything crisp.'],
+  // OXFORD
+  ['oxford', 'Navy OCBD, beige chinos', 'oxford:navy', 'chinos:beige', 'sneaker-white:white', null, [BELT], [BW, GL], ['office', 'casual', 'coffee', 'date'], 'A', 'Any', ['composed', 'trustworthy'], 1, '₹', 'Navy and cream is the "composed and dependable" pairing. It is the shirt version of your polo look.'],
+  ['oxford', 'Ecru OCBD under unstructured blazer', 'oxford:warm-white', 'chinos:olive', 'loafer:brown', 'blazer-unstructured:camel', [BELT], [BW, 'pocket-square:rust', GL], ['business', 'client', 'date', 'arranged'], 'A', 'AC, mild', ['sophisticated', 'mature'], 2, '₹₹', 'The open camel blazer creates the vertical lines your report asks for, and olive chinos keep it out of office-uniform territory.'],
+  ['oxford', 'Chocolate OCBD, stone chinos', 'oxford:chocolate', 'chinos:stone', 'sneaker-suede:taupe', null, [BELT], [LW], ['casual', 'date', 'movies'], 'A', 'Any', ['warm', 'calm'], 2, '₹', 'A dark shirt over light chinos keeps the eye up. A tonal belt avoids a hard line at the waist.'],
+  ['oxford', 'Terracotta OCBD, navy chinos', 'oxford:terracotta', 'chinos:navy', 'loafer-suede:brown', null, [BELT], [BW], ['date', 'friends', 'lunch'], 'A', 'Any', ['confident', 'warm'], 2, '₹₹', 'A warm top over a cool dark trouser. Terracotta near the face lifts your skin tone, and navy below recedes.'],
+  ['oxford', 'Ecru OCBD + dark denim', 'oxford:warm-white', 'jeans-slim-straight:indigo', 'chelsea:brown', null, [BELT], [BW], ['date', 'dinner', 'friends'], 'C', 'Cool', ['refined', 'contemporary'], 1, '₹₹', 'Dark denim and a crisp shirt is the cleanest smart casual uniform there is. Chelsea boots make it an evening look.'],
+  // COTTON
+  ['cotton', 'Chambray shirt, chinos', 'chambray:mid-denim', 'chinos:camel', 'desert:camel', null, [BELT], [BW], ['casual', 'weekend', 'office'], 'A', 'Any', ['approachable', 'relaxed'], 1, '₹', 'Chambray reads as soft denim, but it is lightweight. Camel warms the cool blue.'],
+  ['cotton', 'Herringbone tan shirt dinner', 'herringbone-shirt:tan', 'formal-trousers:warm-white', 'derby:deep-brown', 'blazer-unstructured:beige', [BELT], ['pocket-square:teal', BW], ['dinner', 'date', 'evening'], 'C', 'Mild evening', ['refined', 'elegant'], 3, '₹₹₹', 'From your report (Dinner Look 2), with the cream V-neck layer removed for Bengaluru. Texture replaces pattern.', 'report'],
+  ['cotton', 'Flannel weekend (winter)', 'flannel:rust', 'jeans-straight:indigo', 'desert:camel', 'quilted:olive', [], [BW], ['hill', 'weekend', 'outdoor'], 'X', 'Cold', ['rugged', 'warm'], 2, '₹₹', 'Hill-station kit. Rust flannel and olive quilting are both deep-autumn colours.'],
+  ['cotton', 'Poplin ecru, charcoal trousers', 'poplin:warm-white', 'formal-trousers:charcoal', 'derby:brown', null, [BELT], [BW], ['office', 'presentation', 'interview'], 'A', 'AC office', ['professional', 'trustworthy'], 1, '₹₹', 'Your corporate default. Brown shoes and a brown belt warm the charcoal.'],
+  ['cotton', 'Denim shirt + olive chinos', 'denim-shirt:indigo', 'chinos:olive', 'sneaker-white:white', null, [BELT], [SMART], ['casual', 'weekend'], 'C', 'Cool', ['rugged', 'relaxed'], 1, '₹', 'Dark denim on top and olive below is a workwear palette that never looks tired.'],
+  // TWILL
+  ['twill', 'Rust twill dinner shirt', 'twill-shirt:rust', 'chinos:beige', 'loafer:brown', null, [BELT], [BW], ['dinner', 'date'], 'A', 'Evening', ['warm', 'confident'], 2, '₹₹', "From your report (Dinner Look 1). The report's palette label for this look (cream, off-white) does not match its clothes, so read this as rust on top and beige below.", 'report'],
+  ['twill', 'Olive twill office', 'twill-shirt:olive', 'formal-trousers:stone', 'derby:brown', null, [BELT], [LW, GL], ['office', 'business'], 'A', 'AC office', ['grounded', 'professional'], 2, '₹₹', 'An olive shirt moves office wear away from the white and blue sea. It is still entirely professional.'],
+  ['twill', 'Burgundy twill + charcoal', 'twill-shirt:burgundy', 'formal-trousers:charcoal', 'chelsea:deep-brown', null, [BELT], [BW], ['dinner', 'evening', 'date'], 'C', 'Evening', ['sophisticated'], 2, '₹₹', 'Burgundy and charcoal is the classic "evening sophistication" pairing from your brief.'],
+  ['twill', 'Camel twill, navy chinos', 'twill-shirt:camel', 'chinos:navy', 'loafer-suede:brown', null, [BELT], [LW], ['business', 'lunch'], 'A', 'Any', ['refined', 'warm'], 2, '₹₹', 'A light warm top over dark cool trousers keeps the eye up and the lower half quiet.'],
+  // UTILITY
+  ['utility', 'Olive utility shirt, stone chinos', 'utility-shirt:olive', 'chinos:stone', 'desert:camel', null, [], [SMART], ['weekend', 'outdoor', 'travel'], 'A', 'Any', ['adventurous', 'grounded'], 1, '₹', 'Chest pockets add width up high, and the untucked straight hem skims the midsection.'],
+  ['utility', 'Ivory shirt + tan utility jacket', 'oxford:ivory', 'jeans-straight:camel', 'slipon:stone', 'utility-jacket:tan', [BELT], ['watch-steel:silver-metal'], ['casual', 'city'], 'A', 'Mild', ['urban', 'balanced'], 2, '₹₹', 'From your report (Casual Look 2). The report pairs it with a silver watch, but your warm undertone prefers gold-tone, which I note as a contradiction.', 'report'],
+  ['utility', 'Khaki utility, dark denim', 'utility-shirt:camel', 'jeans-slim-straight:indigo', 'sneaker-white:white', null, [], [SUN], ['weekend', 'friends'], 'A', 'Any', ['relaxed'], 1, '₹', 'Camel and indigo is the definitive casual pairing.'],
+  ['utility', 'Chocolate utility + cargo', 'utility-shirt:chocolate', 'cargo:beige', 'sneaker-suede:taupe', null, [], [SMART], ['travel', 'outdoor'], 'A', 'Any', ['adventurous'], 1, '₹', 'Dark over light. Keep the cargo pockets flat.'],
+  // BAND
+  ['band', 'Ivory band collar + Nehru', 'band-shirt:ivory', 'chinos:beige', 'loafer:tan', 'nehru:teal', [], [LW], ['festive', 'family', 'arranged'], 'A', 'Mild', ['traditional', 'contemporary'], 2, '₹₹', 'This is Indo-Western without a kurta. A deep teal Nehru jacket over a band collar suits festival lunches.'],
+  ['band', 'Olive band collar, cream trousers', 'band-shirt:olive', 'linen-trousers:ivory', 'loafer-suede:brown', null, [], [BW], ['lunch', 'date', 'resort'], 'W', 'Warm', ['calm', 'refined'], 2, '₹₹', 'Clean and collarless. It is olive and cream again, which is your most reliable combination.'],
+  ['band', 'Rust band collar + navy', 'band-shirt:rust', 'chinos:navy', 'sneaker-white:white', null, [], [SMART], ['casual', 'friends'], 'W', 'Warm', ['expressive'], 2, '₹', 'Warm top, cool bottom. The collarless neckline keeps it modern.'],
+  ['band', 'Black band collar evening', 'band-shirt:black', 'formal-trousers:charcoal', 'chelsea:black', null, [], ['watch-steel:gold-metal'], ['evening', 'party'], 'C', 'Night', ['sharp'], 3, '₹₹', 'Black works for you only at night. Gold-tone on the wrist puts warmth back.'],
+  // PRINTED
+  ['printed', 'Teal Cuban shirt, cream', 'cuban:teal', 'chinos:ivory', 'loafer-suede:brown', null, [], [SUN, 'bracelet:brown'], ['date', 'brunch', 'resort'], 'S', 'Hot', ['creative', 'distinctive'], 2, '₹₹', 'The camp collar makes a V and the straight untucked hem skims the stomach. This is the most flattering casual shirt cut for you.'],
+  ['printed', 'Micro-print olive shirt', 'printed-shirt:olive', 'jeans-slim-straight:indigo', 'sneaker-white:white', null, [], [SMART], ['casual', 'friends', 'movies'], 'A', 'Any', ['creative', 'relaxed'], 1, '₹', 'From the report\'s wardrobe essentials: micro-checks or small prints in cream, taupe and olive.'],
+  ['printed', 'Rust Cuban + olive linen', 'cuban:rust', 'linen-trousers:olive', 'espadrille:ivory', null, [], [SUN], ['beach', 'resort', 'vacation'], 'S', 'Very hot', ['adventurous', 'warm'], 3, '₹₹', 'Two of your colours in two breathable fabrics. Holiday-only intensity.'],
+  ['printed', 'Ivory micro-print, chocolate chinos', 'printed-shirt:ivory', 'chinos:chocolate', 'loafer:tan', null, [TBELT], [LW], ['date', 'dinner', 'lunch'], 'A', 'Any', ['refined', 'warm'], 2, '₹₹', 'Light pattern above, a dark anchor below. This is the reverse of the usual contrast and keeps attention high.'],
+  // CHINOS
+  ['chinos', 'Olive chinos, ecru tee, camel overshirt', 'tee-crew:warm-white', 'chinos:olive', 'sneaker-white:white', 'overshirt:camel', [], [SMART], ['casual', 'weekend', 'travel'], 'A', 'Mild', ['grounded', 'approachable'], 1, '₹', 'Three neutrals from your palette. Olive chinos are the most versatile trouser colour you can own after beige.'],
+  ['chinos', 'Chocolate chinos, cream polo', 'polo-knit:ivory', 'chinos:chocolate', 'loafer-suede:brown', null, [BELT], [LW], ['date', 'dinner'], 'A', 'Any', ['refined', 'elegant'], 2, '₹₹', 'Cream and chocolate is luxurious and warm. A tonal belt stops a hard waist line.'],
+  ['chinos', 'Navy chinos, rust Oxford', 'oxford:rust', 'chinos:navy', 'desert:camel', null, [BELT], [BW], ['friends', 'lunch'], 'A', 'Any', ['confident'], 2, '₹', 'Rust above navy is complementary colour theory at work: warm against cool, both deep.'],
+  ['chinos', 'Stone chinos tonal', 'linen-cotton-shirt:camel', 'chinos:stone', 'loafer:tan', null, [TBELT], [LW, GL], ['business', 'family'], 'A', 'Warm', ['understated', 'refined'], 2, '₹₹', 'Camel over stone is the "cream and camel" refinement from your brief.'],
+  // JEANS
+  ['jeans', 'Dark denim + chocolate knit polo', 'polo-knit:chocolate', 'jeans-slim-straight:indigo', 'chelsea:brown', null, [BELT], [BW], ['date', 'dinner'], 'C', 'Cool evening', ['confident', 'refined'], 2, '₹₹', 'Dark on dark creates one long column. Chelsea boots continue the line.'],
+  ['jeans', 'Ecru denim summer', 'linen-shirt:navy', 'jeans-straight:ivory', 'loafer-suede:brown', null, [BELT], [SUN], ['brunch', 'resort'], 'S', 'Warm', ['contemporary', 'relaxed'], 3, '₹₹', 'Ecru denim is advanced. Keep the top darker, and only wear it when it fits cleanly through the thigh.'],
+  ['jeans', 'Indigo jeans + teal overshirt', 'tee-crew:ivory', 'jeans-straight:indigo', 'sneaker-white:white', 'overshirt:teal', [], [SMART], ['casual', 'friends'], 'A', 'Mild', ['distinctive', 'relaxed'], 1, '₹', 'An open teal overshirt draws two vertical lines over an ecru tee.'],
+  ['jeans', 'Jeans + camel crewneck', 'crew-sweater:camel', 'jeans-slim-straight:indigo', 'desert:chocolate', null, [], [BW], ['winter', 'weekend', 'hill'], 'X', 'Cold', ['warm', 'calm'], 1, '₹₹', 'Camel knit over indigo is quiet luxury at a mid-market price.'],
+  // FORMAL TROUSERS
+  ['formal-trousers', 'Pleated camel trousers, ivory shirt', 'oxford:ivory', 'pleated:camel', 'loafer:brown', null, [BELT], [BW, GL], ['office', 'business', 'family'], 'A', 'AC office', ['mature', 'refined'], 2, '₹₹', 'From your report (Office Look 1, without the blazer). A pleated, higher rise sits above the softest part of the stomach.', 'report'],
+  ['formal-trousers', 'Charcoal pleated + teal knit', 'v-sweater:teal', 'pleated:charcoal', 'derby:brown', null, [BELT], [BW], ['office', 'presentation'], 'C', 'AC office', ['intelligent', 'calm'], 2, '₹₹', 'A V-neck knit over a shirt collar gives a double V and draws the eye up to the face.'],
+  ['formal-trousers', 'Navy trousers, camel twill', 'twill-shirt:camel', 'formal-trousers:navy', 'loafer:brown', null, [BELT], [LW], ['business', 'client'], 'A', 'Any', ['trustworthy'], 2, '₹₹', 'Navy trousers are the most useful formal trouser after charcoal.'],
+  ['formal-trousers', 'Beige trousers, cream turtleneck, blazer', 'turtleneck:ivory', 'formal-trousers:camel', 'oxford-shoe:brown', 'blazer-unstructured:beige', [], ['pocket-square:copper'], ['dinner', 'evening'], 'X', 'Cool', ['refined', 'sophisticated'], 3, '₹₹₹', 'From your report (Office Look 3). Turtlenecks shorten the neck, so keep the blazer open and the fabric fine.', 'report'],
+  // CARGO
+  ['cargo', 'Olive cargo, ecru tee', 'tee-crew:warm-white', 'cargo:olive', 'sneaker-white:white', null, [], [SMART, SUN], ['outdoor', 'weekend', 'travel'], 'A', 'Any', ['relaxed', 'adventurous'], 1, '₹', 'Utility, but kept to two colours.'],
+  ['cargo', 'Beige cargo commute (report)', 'sweatshirt:ivory', 'cargo:beige', 'slipon:stone', 'bomber:tan', [], ['watch-steel:silver-metal', 'backpack:brown'], ['travel', 'airport'], 'C', 'AC, cool', ['relaxed'], 1, '₹₹', 'From your report (Travel Look 1). Keep the bomber open, because a ribbed hem at the widest point is the one risk here.', 'report'],
+  ['cargo', 'Chocolate cargo + mustard tee', 'tee-crew:mustard', 'cargo:chocolate', 'sneaker-suede:taupe', null, [], [SMART], ['weekend', 'friends'], 'A', 'Any', ['expressive'], 2, '₹', 'Mustard over chocolate is warm and earthy, and it gives your face colour.'],
+  ['cargo', 'Black cargo, olive overshirt', 'tee-crew:black', 'cargo:black', 'sneaker-white:white', 'overshirt:olive', [], [SMART], ['outdoor', 'weekend'], 'C', 'Cool', ['urban'], 2, '₹', 'Black is a caution colour for you. Under an olive overshirt the face area stays warm.'],
+  // OVERSHIRTS
+  ['overshirts', 'Camel overshirt, chocolate tee', 'tee-crew:chocolate', 'chinos:stone', 'desert:camel', 'overshirt:camel', [], [BW], ['casual', 'coffee', 'travel'], 'C', 'Mild', ['warm', 'approachable'], 1, '₹₹', 'Camel and chocolate is warm and expensive-looking. Wearing the overshirt open is the key.'],
+  ['overshirts', 'Linen overshirt, white tee', 'tee-crew:white', 'linen-trousers:beige', 'espadrille:ivory', 'linen-overshirt:olive', [], [SUN], ['resort', 'brunch'], 'S', 'Warm', ['relaxed'], 1, '₹₹', 'An open linen overshirt gives you summer layering without heat.'],
+  ['overshirts', 'Wool shacket, rust henley', 'henley-ls:rust', 'jeans-straight:indigo', 'chelsea:brown', 'shacket:chocolate', [BELT], [BW], ['hill', 'winter', 'date'], 'X', 'Cold', ['confident', 'rugged'], 2, '₹₹', 'Rust and chocolate is the "warm and expressive" pairing from your brief.'],
+  ['overshirts', 'Cream overshirt travel (report)', 'henley-ls:tan', 'joggers:ivory', 'sneaker-suede:stone', 'overshirt:ivory', [], [SMART, 'weekender:brown'], ['travel', 'airport', 'flight'], 'A', 'AC', ['relaxed'], 1, '₹₹', 'From your report (Travel Look 2). Tailored joggers keep it polished.', 'report'],
+  // JACKETS
+  ['jackets', 'Chore jacket, stone chinos', 'tee-crew:ivory', 'chinos:stone', 'desert:chocolate', 'chore:olive', [], [BW], ['casual', 'weekend', 'office'], 'A', 'Mild', ['grounded'], 1, '₹₹', 'A chore jacket is boxy and hip-length, so it covers the midsection and adds shoulder structure.'],
+  ['jackets', 'Field jacket travel', 'henley-ls:ivory', 'jeans-straight:indigo', 'desert:camel', 'field-jacket:olive', [], [BW], ['travel', 'hill'], 'C', 'Cool', ['adventurous'], 2, '₹₹', 'Four pockets, a long cut and a classic military olive.'],
+  ['jackets', 'Harrington evening', 'oxford:warm-white', 'chinos:navy', 'loafer-suede:brown', 'harrington:camel', [BELT], [BW], ['date', 'dinner', 'friends'], 'C', 'Cool evening', ['refined', 'classic'], 2, '₹₹', 'A Harrington is a smarter bomber. Wear it open.'],
+  ['jackets', 'Suede jacket winter date', 'crew-sweater:ivory', 'jeans-slim-straight:indigo', 'chelsea:brown', 'suede-jacket:tan', [], [BW], ['date', 'winter'], 'X', 'Cold', ['romantic', 'confident'], 3, '₹₹₹', 'Tan suede on warm skin is one of the best colour matches there is. This one is for trips or North Indian winters.'],
+  ['jackets', 'Monsoon windbreaker', 'polo:navy', 'chinos:olive', 'sandal:brown', 'windbreaker:olive', [], [SMART], ['monsoon', 'commute'], 'M', 'Rain', ['practical'], 1, '₹', 'Quick-dry nylon over cotton, with sandals that survive a wet road.'],
+  // BLAZERS
+  ['blazers', 'Navy blazer, ecru shirt, grey-free', 'oxford:warm-white', 'chinos:beige', 'loafer:brown', 'blazer:navy', [BELT], ['pocket-square:rust', BW], ['client', 'business', 'arranged', 'family'], 'A', 'AC, mild', ['trustworthy', 'mature'], 1, '₹₹₹', 'The most useful blazer you can own: navy, worn with warm neutrals rather than grey.'],
+  ['blazers', 'Cream blazer office (report)', 'formal-shirt:beige', 'formal-trousers:camel', 'loafer:brown', 'blazer:ivory', [BELT], ['pocket-square:copper'], ['office', 'business', 'wedding-day'], 'A', 'Mild', ['refined', 'elegant'], 3, '₹₹₹', 'From your report (Office Look 1). Cream blazers are bold for an office, so treat this as a day-event look.', 'report'],
+  ['blazers', 'Olive unstructured, chocolate trousers', 'tee-crew:ivory', 'chinos:chocolate', 'loafer-suede:brown', 'blazer-unstructured:olive', [BELT], [BW], ['date', 'dinner'], 'A', 'Mild', ['sophisticated', 'relaxed'], 2, '₹₹', 'A blazer over a tee is smart casual done right. The open front gives two long verticals.'],
+  ['blazers', 'Brown blazer, teal knit', 'v-sweater:teal', 'formal-trousers:stone', 'derby:deep-brown', 'blazer:brown', [BELT], ['pocket-square:mustard'], ['dinner', 'evening', 'networking'], 'X', 'Cool', ['distinctive', 'intelligent'], 3, '₹₹₹', 'Teal against brown tweed-tone is a confident autumn combination.'],
+  // KNITWEAR
+  ['knitwear', 'Teal crewneck over shirt', 'crew-sweater:teal', 'chinos:beige', 'loafer-suede:brown', null, [BELT], [BW], ['office', 'winter'], 'X', 'Cool, AC', ['calm', 'intelligent'], 2, '₹₹', 'Let the shirt collar show above the crewneck to frame the face.'],
+  ['knitwear', 'Rust quarter-zip', 'quarter-zip:rust', 'jeans-slim-straight:indigo', 'sneaker-white:white', null, [], [SMART], ['weekend', 'travel', 'winter'], 'X', 'Cool', ['warm', 'approachable'], 1, '₹₹', 'A half-open zip creates a V. It is cosy and smart at the same time.'],
+  ['knitwear', 'Olive pullover travel (report)', 'crew-sweater:olive', 'joggers:ivory', 'slipon:stone', null, [], [SMART, SUN, 'weekender:brown'], ['travel', 'flight'], 'X', 'AC cold', ['relaxed'], 1, '₹₹', 'From your report (Travel Look 3).', 'report'],
+  ['knitwear', 'Camel cardigan, ecru tee', 'tee-crew:warm-white', 'chinos:chocolate', 'loafer:tan', 'cardigan:camel', [TBELT], [LW], ['coffee', 'date', 'office'], 'C', 'Mild, AC', ['elegant', 'approachable'], 2, '₹₹', 'An open cardigan is the softest possible vertical line.'],
+  // SUITS
+  ['suits', 'Navy two-piece', 'formal-shirt:warm-white', 'formal-trousers:navy', 'oxford-shoe:brown', 'suit-jacket:navy', [BELT], ['tie:burgundy', 'pocket-square:ivory', BW], ['interview', 'wedding', 'client', 'formal'], 'A', 'AC', ['authoritative', 'trustworthy'], 2, '₹₹₹', 'Your first suit should be navy. Wear it with brown shoes in the day and dark-brown or black at night.'],
+  ['suits', 'Charcoal two-piece', 'formal-shirt:beige', 'formal-trousers:charcoal', 'oxford-shoe:deep-brown', 'suit-jacket:charcoal', [BELT], ['tie:teal', BW], ['interview', 'presentation', 'formal'], 'A', 'AC', ['authoritative'], 2, '₹₹₹', 'A warm shirt colour (beige rather than icy blue) stops charcoal from flattening your skin.'],
+  ['suits', 'Brown suit, open collar', 'oxford:ivory', 'formal-trousers:brown', 'loafer:tan', 'suit-jacket:brown', [TBELT], ['pocket-square:rust'], ['wedding-day', 'reception', 'dinner'], 'C', 'Mild', ['warm', 'sophisticated'], 3, '₹₹₹', 'Brown suits are a deep-autumn signature. Leave the collar open for day events.'],
+  ['suits', 'Black-tie basic', 'formal-shirt:white', 'formal-trousers:black', 'oxford-shoe:black', 'suit-jacket:black', [], ['tie:black', 'cufflinks:gold-metal'], ['black-tie'], 'A', 'Evening', ['elegant'], 3, '₹₹₹', 'Black tie is the one place black is mandatory. Gold cufflinks bring back warmth.'],
+  // DATE
+  ['date', 'First-date default', 'oxford:warm-white', 'jeans-slim-straight:indigo', 'loafer-suede:brown', null, [BELT], [BW], ['date', 'first-date', 'coffee'], 'A', 'Any', ['approachable', 'confident'], 1, '₹', 'Clean, warm and unforced. It shows effort without looking like an interview.'],
+  ['date', 'Dinner date, burgundy knit polo', 'polo-knit:burgundy', 'chinos:stone', 'chelsea:brown', null, [BELT], [BW], ['date', 'dinner', 'romantic'], 'C', 'Evening', ['romantic', 'sophisticated'], 2, '₹₹', 'Burgundy is an evening colour for you. In low light it reads rich and deep.'],
+  ['date', 'Aubergine shirt (report)', 'twill-shirt:burgundy', 'chinos:beige', 'loafer:brown', null, [BELT], ['watch-leather:gold-metal', SUN], ['dinner', 'date'], 'A', 'Evening', ['romantic'], 2, '₹₹', 'Report Dinner Look 4 suggests "deep aubergine". Aubergine is not in your palette, so I substituted warm burgundy. The report\'s mention of a mock-neck does not match its listed shirt.', 'report'],
+  ['date', 'Rust and chocolate', 'linen-cotton-shirt:rust', 'chinos:chocolate', 'loafer-suede:brown', null, [BELT], [BW, 'bracelet:brown'], ['date', 'lunch', 'outdoor'], 'W', 'Warm', ['warm', 'expressive'], 2, '₹₹', 'This is the "warm, expressive, confident" combination from your brief.'],
+  ['date', 'Anniversary dinner', 'formal-shirt:ivory', 'formal-trousers:charcoal', 'oxford-shoe:deep-brown', 'blazer:burgundy', [BELT], ['pocket-square:ivory', BW], ['anniversary', 'romantic', 'dinner'], 'C', 'Evening', ['elegant', 'romantic'], 3, '₹₹₹', 'A burgundy blazer is a statement piece. Keep everything else quiet.'],
+  // TRAVEL
+  ['travel', 'Airport uniform', 'polo-knit:navy', 'joggers:charcoal', 'sneaker-white:white', 'overshirt:camel', [], [SMART, 'backpack:brown'], ['airport', 'flight', 'travel'], 'A', 'AC', ['relaxed', 'composed'], 1, '₹₹', 'Comfortable at 35,000 ft and still presentable at arrival. The overshirt handles cabin cold.'],
+  ['travel', 'Train journey', 'henley:olive', 'cargo:beige', 'sneaker-suede:taupe', null, [], [SMART], ['train', 'road-trip', 'travel'], 'W', 'Warm', ['relaxed'], 1, '₹', 'Pockets, low creasing and darker fabric on top that hides the travel grime.'],
+  ['travel', 'City exploration', 'oxford:navy', 'chinos:stone', 'sneaker-white:white', null, [], [SUN, 'weekender:brown'], ['city', 'travel', 'international'], 'A', 'Any', ['approachable'], 1, '₹', 'You can walk ten kilometres in it and walk into a restaurant afterwards.'],
+  ['travel', 'Hill station layers', 'henley-ls:ivory', 'jeans-straight:indigo', 'desert:chocolate', 'quilted:olive', [], [BW], ['hill'], 'X', 'Cold', ['rugged'], 1, '₹₹', 'Base layer, mid layer, shell: three thin layers beat one thick one.'],
+  ['travel', 'Monsoon travel', 'polo-jersey:chocolate', 'cargo:olive', 'sandal:brown', 'windbreaker:navy', [], [SMART], ['monsoon', 'travel'], 'M', 'Rain', ['practical'], 1, '₹', 'Everything dries in hours. Dark colours hide mud splashes.'],
+  // SUMMER
+  ['summer', 'Summer linen two-tone', 'linen-shirt:beige', 'linen-trousers:olive', 'espadrille:ivory', null, [], [SUN], ['brunch', 'beach'], 'S', 'Hot', ['relaxed'], 1, '₹₹', 'Pure linen top and bottom: maximum airflow.'],
+  ['summer', 'Coral polo, stone shorts', 'polo:coral', 'shorts:stone', 'slipon:ivory', null, [], [SUN], ['beach', 'weekend'], 'S', 'Very hot', ['friendly'], 1, '₹', 'Coral is your warm summer accent. Shorts should end just above the knee.'],
+  ['summer', 'Golden yellow linen', 'linen-cotton-shirt:golden', 'chinos:navy', 'loafer-suede:brown', null, [], [SUN], ['brunch', 'lunch'], 'S', 'Hot', ['expressive', 'friendly'], 2, '₹₹', 'Golden yellow near the face, anchored by navy.'],
+  ['summer', 'Ecru tee + olive drawstring', 'tee-crew:warm-white', 'drawstring:olive', 'sandal:tan', null, [], [SUN], ['weekend', 'home'], 'S', 'Hot', ['relaxed'], 1, '₹', 'Smart lounge wear for weekends and errands.'],
+  // WINTER
+  ['winter', 'Bengaluru December morning', 'crew-sweater:forest', 'chinos:beige', 'desert:camel', null, [], [BW], ['office', 'coffee'], 'X', '15–18°C', ['calm'], 1, '₹₹', 'Bengaluru winter is mild: a fine knit is enough.'],
+  ['winter', 'Overcoat for North India', 'turtleneck:chocolate', 'formal-trousers:charcoal', 'chelsea:brown', 'overcoat:camel', [], ['stole:rust'], ['winter', 'wedding', 'travel'], 'X', 'Below 10°C', ['authoritative', 'elegant'], 3, '₹₹₹', 'A camel overcoat over dark layers is the cleanest cold-weather silhouette. Buy one only if you travel north often.'],
+  ['winter', 'Winter weekend', 'hoodie:olive', 'jeans-straight:indigo', 'sneaker-white:white', 'denim-jacket:indigo', [], [SMART], ['weekend'], 'X', 'Cold', ['relaxed'], 2, '₹', 'Wear the denim jacket open, and choose a different wash from your jeans.'],
+  ['winter', 'Cardigan office', 'oxford:ivory', 'pleated:charcoal', 'derby:brown', 'cardigan:chocolate', [BELT], [BW], ['office'], 'X', 'Cool, AC', ['intelligent', 'approachable'], 2, '₹₹', 'A cardigan is softer than a blazer but still a layer of authority.'],
+  // TRADITIONAL
+  ['traditional', 'Cotton kurta, festival lunch', 'kurta:mustard', 'churidar:ivory', 'kolhapuri:tan', null, [], [LW], ['festive', 'family', 'ganesh', 'religious'], 'A', 'Warm', ['traditional', 'warm'], 1, '₹', 'Mustard and ivory are festive without being loud. Kolhapuris are the honest local choice.'],
+  ['traditional', 'Linen kurta, summer function', 'linen-kurta:warm-white', 'churidar:warm-white', 'mojari:tan', null, [], [LW], ['family', 'religious', 'pooja'], 'W', 'Hot', ['calm', 'traditional'], 1, '₹₹', 'All-ecru linen is cool and dignified.'],
+  ['traditional', 'Kurta + Nehru jacket', 'kurta:ivory', 'churidar:ivory', 'mojari:tan', 'nehru:rust', [], ['pocket-square:mustard'], ['festive', 'diwali', 'engagement'], 'A', 'Mild', ['traditional', 'confident'], 2, '₹₹', 'The Nehru jacket adds structure and a frame, which suits your shape.'],
+  ['traditional', 'Olive kurta + jeans (Indo-Western)', 'kurta:olive', 'jeans-slim-straight:indigo', 'loafer:brown', null, [], [LW], ['family', 'festive', 'casual'], 'A', 'Any', ['contemporary'], 1, '₹', 'A short kurta over dark denim is acceptable for informal family visits.'],
+  ['traditional', 'Forest kurta, Diwali evening', 'silk-kurta:forest', 'churidar:ivory', 'mojari:gold-metal', null, [], ['stole:copper'], ['diwali', 'festive', 'evening'], 'C', 'Evening', ['elegant', 'traditional'], 2, '₹₹', 'Forest green with gold-tone accents suits a Diwali evening and is warm-season friendly.'],
+  // WEDDING
+  ['wedding', 'Arranged-marriage first meeting', 'oxford:warm-white', 'formal-trousers:navy', 'loafer:brown', 'blazer-unstructured:camel', [BELT], [BW, GL], ['arranged', 'family-intro'], 'A', 'Mild', ['trustworthy', 'mature', 'approachable'], 1, '₹₹', 'The aim is "dependable and warm", not "dressed for an interview". No tie, an open collar and a soft blazer. It is easy to take the blazer off if the room is casual.'],
+  ['wedding', 'Second meeting', 'polo-knit:teal', 'chinos:beige', 'loafer-suede:brown', null, [BELT], [BW], ['arranged', 'date', 'family'], 'A', 'Any', ['approachable', 'calm'], 1, '₹₹', 'One step more relaxed than the first meeting, while staying polished.'],
+  ['wedding', 'Wedding guest: bandhgala', 'kurta:ivory', 'churidar:ivory', 'mojari:gold-metal', 'bandhgala:burgundy', [], ['pocket-square:mustard'], ['wedding', 'reception', 'formal-indian'], 'C', 'Evening', ['elegant', 'authoritative'], 3, '₹₹₹', 'A burgundy bandhgala is a deep-autumn evening colour in formal Indian structure.'],
+  ['wedding', 'Sangeet / mehendi', 'silk-kurta:mustard', 'churidar:ivory', 'mojari:tan', 'nehru:teal', [], ['stole:teal'], ['wedding', 'festive', 'engagement'], 'W', 'Warm', ['friendly', 'expressive'], 2, '₹₹', 'Daytime functions allow brighter, warmer colours. Mustard and teal is a festive pair.'],
+  ['wedding', 'Reception suit', 'formal-shirt:ivory', 'formal-trousers:chocolate', 'oxford-shoe:deep-brown', 'suit-jacket:chocolate', [BELT], ['tie:teal', 'pocket-square:copper', BW], ['reception', 'wedding'], 'C', 'Evening AC', ['sophisticated'], 3, '₹₹₹', 'A chocolate suit is warmer and more distinctive than charcoal at an evening reception.'],
+  ['wedding', 'Engagement Indo-Western', 'band-shirt:ivory', 'formal-trousers:ivory', 'loafer:tan', 'nehru:copper', [], ['pocket-square:copper'], ['engagement', 'festive'], 'A', 'Mild', ['contemporary', 'elegant'], 2, '₹₹', 'A copper Nehru over all-ivory is warm metallic without being flashy.'],
+];
+
+export const outfits: Outfit[] = (() => {
+  const count: Record<string, number> = {};
+  return rows.map((r) => {
+    const [collection, name, top, bottom, footwear, outer, required, optional, occasions, season, weather, impression, difficulty, price, why, source] = r;
+    count[collection] = (count[collection] ?? 0) + 1;
+    return {
+      id: `${collection}-${String(count[collection]).padStart(2, '0')}`,
+      collection, name, top, bottom, footwear, outer: outer ?? undefined, required, optional,
+      occasions, seasons: S[season], weather, impression, difficulty, price, why, source: source ?? 'catalogue',
+    };
+  });
+})();
+
+export const outfitById = Object.fromEntries(outfits.map((o) => [o.id, o]));

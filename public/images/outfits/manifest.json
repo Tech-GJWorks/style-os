@@ -1,0 +1,4 @@
+{
+  "note": "List outfit ids (e.g. \"polo-01\") whose personalised render exists at the path shown on the Virtual Try-On page. Empty = all pending.",
+  "available": []
+}

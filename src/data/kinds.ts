@@ -1,0 +1,118 @@
+import type { Kind } from './types';
+
+const ALL = ['summer', 'monsoon', 'winter', 'transitional'] as Kind['seasons'];
+const WARM = ['summer', 'transitional', 'monsoon'] as Kind['seasons'];
+const COOL = ['winter', 'transitional'] as Kind['seasons'];
+
+// estPrice = indicative mid-market INR used only for "estimated purchase cost". Not verified against any store.
+export const kinds: Kind[] = [
+  // Tops
+  { id: 'polo', label: 'Pique polo', slot: 'top', wardrobe: 'Polo T-shirts', formality: 2, fabric: 'cotton', seasons: ALL, academy: 'pique-polo', shape: 'polo', body: 'flattering', bodyNote: 'The collar frames the face and the placket adds a short vertical line. Pique is thick enough not to cling.', estPrice: 1800 },
+  { id: 'polo-knit', label: 'Knitted polo', slot: 'top', wardrobe: 'Polo T-shirts', formality: 3, fabric: 'cotton', seasons: ALL, academy: 'knitted-polo', shape: 'polo', body: 'flattering', bodyNote: 'Textured knit drapes off the body. It is the most flattering polo for a fuller midsection.', estPrice: 2800 },
+  { id: 'polo-jersey', label: 'Jersey polo', slot: 'top', wardrobe: 'Polo T-shirts', formality: 2, fabric: 'cotton-elastane', seasons: WARM, academy: 'jersey-polo', shape: 'polo', body: 'careful', bodyNote: 'Thin jersey with stretch can cling at the stomach. Size for drape, not for tightness.', estPrice: 1500 },
+  { id: 'tee-crew', label: 'Crewneck T-shirt (heavyweight)', slot: 'top', wardrobe: 'T-shirts', formality: 1, fabric: 'cotton', seasons: ALL, academy: 'crewneck-tee', shape: 'tee', body: 'neutral', bodyNote: 'Choose 180–220 GSM so it skims rather than clings. Thin tees show every contour.', estPrice: 900 },
+  { id: 'tee-v', label: 'V-neck T-shirt', slot: 'top', wardrobe: 'T-shirts', formality: 1, fabric: 'cotton', seasons: WARM, academy: 'vneck-tee', shape: 'tee', body: 'flattering', bodyNote: 'The V lengthens the neck and draws the eye up. Keep the V shallow.', estPrice: 800 },
+  { id: 'henley', label: 'Henley', slot: 'top', wardrobe: 'Henley T-shirts', formality: 1, fabric: 'cotton', seasons: ALL, academy: 'henley', shape: 'henley', body: 'flattering', bodyNote: 'The button placket is a vertical line, and the report highlights henleys for you.', estPrice: 1200 },
+  { id: 'henley-ls', label: 'Long-sleeve henley', slot: 'top', wardrobe: 'Henley T-shirts', formality: 2, fabric: 'cotton', seasons: COOL, academy: 'henley', shape: 'henley', body: 'flattering', estPrice: 1500 },
+  { id: 'oxford', label: 'Oxford button-down shirt', slot: 'top', wardrobe: 'Oxford shirts', formality: 3, fabric: 'cotton', seasons: ALL, academy: 'ocbd', shape: 'shirt', body: 'flattering', bodyNote: 'The fabric has body and does not cling. The button-down collar holds its shape under a jacket.', estPrice: 2200 },
+  { id: 'poplin', label: 'Poplin shirt', slot: 'top', wardrobe: 'Cotton shirts', formality: 4, fabric: 'cotton', seasons: ALL, academy: 'poplin', shape: 'shirt', body: 'neutral', estPrice: 2000 },
+  { id: 'twill-shirt', label: 'Twill shirt', slot: 'top', wardrobe: 'Twill shirts', formality: 4, fabric: 'cotton', seasons: ALL, academy: 'twill-shirt', shape: 'shirt', body: 'flattering', bodyNote: 'The diagonal weave drapes well and resists creasing better than poplin.', estPrice: 2200 },
+  { id: 'formal-shirt', label: 'Formal dress shirt', slot: 'top', wardrobe: 'Formal shirts', formality: 5, fabric: 'cotton', seasons: ALL, academy: 'dress-shirt', shape: 'shirt', body: 'neutral', estPrice: 2500 },
+  { id: 'linen-shirt', label: 'Linen shirt', slot: 'top', wardrobe: 'Linen shirts', formality: 3, fabric: 'linen', seasons: WARM, academy: 'linen-shirt', shape: 'shirt', body: 'flattering', bodyNote: 'Linen stands away from the body, so it never clings. It creases, and that is part of its character.', estPrice: 2500 },
+  { id: 'linen-cotton-shirt', label: 'Linen-cotton shirt', slot: 'top', wardrobe: 'Linen shirts', formality: 3, fabric: 'linen-cotton', seasons: ALL, academy: 'linen-cotton-shirt', shape: 'shirt', body: 'flattering', estPrice: 2000 },
+  { id: 'chambray', label: 'Chambray shirt', slot: 'top', wardrobe: 'Cotton shirts', formality: 2, fabric: 'cotton', seasons: ALL, academy: 'chambray', shape: 'shirt', body: 'neutral', estPrice: 1800 },
+  { id: 'denim-shirt', label: 'Denim shirt', slot: 'top', wardrobe: 'Cotton shirts', formality: 2, fabric: 'cotton', seasons: COOL, academy: 'denim-shirt', shape: 'shirt', body: 'neutral', estPrice: 2000 },
+  { id: 'flannel', label: 'Flannel shirt', slot: 'top', wardrobe: 'Cotton shirts', formality: 2, fabric: 'cotton', seasons: ['winter'], academy: 'flannel', shape: 'shirt', body: 'neutral', estPrice: 1800 },
+  { id: 'cuban', label: 'Cuban / camp-collar shirt', slot: 'top', wardrobe: 'Printed shirts', formality: 2, fabric: 'linen-cotton', seasons: WARM, academy: 'cuban-collar', shape: 'shirt', body: 'flattering', bodyNote: 'Worn untucked with a straight hem, it skims the midsection. The open collar makes a V.', estPrice: 2000 },
+  { id: 'band-shirt', label: 'Band-collar shirt', slot: 'top', wardrobe: 'Cotton shirts', formality: 3, fabric: 'linen-cotton', seasons: WARM, academy: 'band-collar', shape: 'shirt-band', body: 'neutral', bodyNote: 'Fine for you, but a collarless neckline does less to frame a diamond face than a soft collar.', estPrice: 2000 },
+  { id: 'printed-shirt', label: 'Micro-print shirt', slot: 'top', wardrobe: 'Printed shirts', formality: 2, fabric: 'cotton', seasons: ALL, academy: 'micro-print', shape: 'shirt', body: 'flattering', bodyNote: 'Small, dense prints add interest without drawing the eye to one area.', estPrice: 2000 },
+  { id: 'utility-shirt', label: 'Utility shirt', slot: 'top', wardrobe: 'Overshirts', formality: 2, fabric: 'cotton', seasons: ALL, academy: 'utility-shirt', shape: 'shirt', body: 'flattering', bodyNote: 'Chest pockets add width high up, which balances the midsection.', estPrice: 2200 },
+  { id: 'herringbone-shirt', label: 'Herringbone shirt', slot: 'top', wardrobe: 'Cotton shirts', formality: 4, fabric: 'cotton', seasons: ALL, academy: 'herringbone-shirt', shape: 'shirt', body: 'flattering', estPrice: 2400 },
+  { id: 'pinstripe-shirt', label: 'Fine pinstripe shirt', slot: 'top', wardrobe: 'Formal shirts', formality: 4, fabric: 'cotton', seasons: ALL, academy: 'pinstripe', shape: 'shirt', body: 'flattering', bodyNote: 'Vertical stripes do exactly what your styling strategy asks for.', estPrice: 2400 },
+  { id: 'crew-sweater', label: 'Fine-knit crewneck sweater', slot: 'top', wardrobe: 'Sweaters', formality: 3, fabric: 'merino', seasons: COOL, academy: 'crew-sweater', shape: 'knit', body: 'neutral', bodyNote: 'Fine gauge only. Chunky knits add bulk.', estPrice: 3000 },
+  { id: 'v-sweater', label: 'V-neck sweater', slot: 'top', wardrobe: 'Sweaters', formality: 3, fabric: 'merino', seasons: COOL, academy: 'v-sweater', shape: 'knit', body: 'flattering', estPrice: 3000 },
+  { id: 'quarter-zip', label: 'Quarter-zip pullover', slot: 'top', wardrobe: 'Sweaters', formality: 2, fabric: 'cotton', seasons: COOL, academy: 'quarter-zip', shape: 'knit', body: 'flattering', bodyNote: 'Open the zip a little and the collar forms a V.', estPrice: 2500 },
+  { id: 'sweatshirt', label: 'Crew sweatshirt', slot: 'top', wardrobe: 'Sweatshirts', formality: 1, fabric: 'cotton', seasons: COOL, academy: 'sweatshirt', shape: 'knit', body: 'careful', bodyNote: 'A ribbed hem grips the hip and can balloon over the stomach. Choose a straight hem or size up slightly.', estPrice: 1800 },
+  { id: 'hoodie', label: 'Hoodie', slot: 'top', wardrobe: 'Hoodies', formality: 1, fabric: 'cotton', seasons: COOL, academy: 'hoodie', shape: 'hoodie', body: 'careful', estPrice: 2000 },
+  { id: 'turtleneck', label: 'Fine turtleneck', slot: 'top', wardrobe: 'Sweaters', formality: 3, fabric: 'merino', seasons: ['winter'], academy: 'turtleneck', shape: 'turtleneck', body: 'careful', bodyNote: 'The report suggests it. It works under a blazer, but it shortens the neck, so a mock-neck is the easier version for you.', estPrice: 2500 },
+  { id: 'kurta', label: 'Cotton kurta', slot: 'top', wardrobe: 'Kurtas', formality: 3, fabric: 'cotton', seasons: ALL, academy: 'cotton-kurta', shape: 'kurta', body: 'flattering', bodyNote: 'A long vertical column. Kurtas are one of the most forgiving garments for a fuller midsection.', estPrice: 2000 },
+  { id: 'linen-kurta', label: 'Linen kurta', slot: 'top', wardrobe: 'Kurtas', formality: 3, fabric: 'linen', seasons: WARM, academy: 'linen-kurta', shape: 'kurta', body: 'flattering', estPrice: 2800 },
+  { id: 'silk-kurta', label: 'Silk-blend kurta', slot: 'top', wardrobe: 'Kurtas', formality: 4, fabric: 'silk', seasons: ALL, academy: 'silk-kurta', shape: 'kurta', body: 'flattering', estPrice: 4500 },
+  // Outerwear
+  { id: 'blazer-unstructured', label: 'Unstructured blazer', slot: 'outer', wardrobe: 'Blazers', formality: 4, fabric: 'linen-cotton', seasons: ALL, academy: 'unstructured-blazer', outerShape: 'blazer', body: 'flattering', bodyNote: 'Worn open, it draws two long vertical lines. This is the single most useful piece for an oval or rectangle shape.', estPrice: 6000 },
+  { id: 'blazer', label: 'Structured blazer', slot: 'outer', wardrobe: 'Blazers', formality: 5, fabric: 'wool-poly', seasons: ALL, academy: 'structured-blazer', outerShape: 'blazer', body: 'flattering', estPrice: 8000 },
+  { id: 'suit-jacket', label: 'Suit jacket', slot: 'outer', wardrobe: 'Blazers', formality: 5, fabric: 'wool', seasons: ALL, academy: 'two-piece-suit', outerShape: 'blazer', body: 'flattering', estPrice: 12000 },
+  { id: 'overshirt', label: 'Overshirt', slot: 'outer', wardrobe: 'Overshirts', formality: 2, fabric: 'cotton', seasons: ALL, academy: 'overshirt', outerShape: 'overshirt', body: 'flattering', bodyNote: 'Worn open over a tee, it is the casual version of the blazer trick.', estPrice: 2500 },
+  { id: 'linen-overshirt', label: 'Linen overshirt', slot: 'outer', wardrobe: 'Overshirts', formality: 2, fabric: 'linen-cotton', seasons: WARM, academy: 'overshirt', outerShape: 'overshirt', body: 'flattering', estPrice: 2800 },
+  { id: 'shacket', label: 'Shacket', slot: 'outer', wardrobe: 'Overshirts', formality: 2, fabric: 'wool-poly', seasons: COOL, academy: 'shacket', outerShape: 'overshirt', body: 'flattering', estPrice: 3000 },
+  { id: 'bomber', label: 'Bomber jacket', slot: 'outer', wardrobe: 'Bomber jackets', formality: 2, fabric: 'nylon', seasons: COOL, academy: 'bomber', outerShape: 'jacket', body: 'careful', bodyNote: 'The ribbed hem stops at the widest point. Wear it open and choose a longer cut.', estPrice: 3500 },
+  { id: 'harrington', label: 'Harrington jacket', slot: 'outer', wardrobe: 'Lightweight jackets', formality: 3, fabric: 'cotton-poly', seasons: COOL, academy: 'harrington', outerShape: 'jacket', body: 'neutral', estPrice: 4000 },
+  { id: 'denim-jacket', label: 'Denim jacket', slot: 'outer', wardrobe: 'Denim jackets', formality: 2, fabric: 'cotton', seasons: COOL, academy: 'denim-jacket', outerShape: 'jacket', body: 'careful', bodyNote: 'Cropped at the waist, so it creates a horizontal line. Wear it open, never with a matching-wash jean.', estPrice: 3000 },
+  { id: 'chore', label: 'Chore jacket', slot: 'outer', wardrobe: 'Lightweight jackets', formality: 2, fabric: 'cotton', seasons: ALL, academy: 'chore-jacket', outerShape: 'jacket', body: 'flattering', bodyNote: 'Boxy, hip-length and with patch pockets. It hides the midsection and adds structure.', estPrice: 3500 },
+  { id: 'field-jacket', label: 'Field jacket', slot: 'outer', wardrobe: 'Lightweight jackets', formality: 2, fabric: 'cotton', seasons: COOL, academy: 'field-jacket', outerShape: 'jacket', body: 'flattering', estPrice: 4500 },
+  { id: 'utility-jacket', label: 'Unlined utility jacket', slot: 'outer', wardrobe: 'Lightweight jackets', formality: 2, fabric: 'cotton', seasons: ALL, academy: 'utility-jacket', outerShape: 'jacket', body: 'flattering', estPrice: 3500 },
+  { id: 'suede-jacket', label: 'Suede jacket', slot: 'outer', wardrobe: 'Other jackets', formality: 3, fabric: 'suede', seasons: ['winter'], academy: 'suede-jacket', outerShape: 'jacket', body: 'neutral', estPrice: 12000 },
+  { id: 'quilted', label: 'Quilted jacket', slot: 'outer', wardrobe: 'Lightweight jackets', formality: 2, fabric: 'nylon', seasons: ['winter'], academy: 'quilted', outerShape: 'jacket', body: 'careful', estPrice: 4000 },
+  { id: 'windbreaker', label: 'Lightweight windbreaker', slot: 'outer', wardrobe: 'Lightweight jackets', formality: 1, fabric: 'nylon', seasons: ['monsoon', 'transitional'], academy: 'windbreaker', outerShape: 'jacket', body: 'neutral', estPrice: 2500 },
+  { id: 'cardigan', label: 'Fine cardigan', slot: 'outer', wardrobe: 'Cardigans', formality: 3, fabric: 'merino', seasons: COOL, academy: 'cardigan', outerShape: 'cardigan', body: 'flattering', bodyNote: 'An open cardigan is a soft vertical line. Choose a fine knit.', estPrice: 3000 },
+  { id: 'overcoat', label: 'Overcoat', slot: 'outer', wardrobe: 'Other jackets', formality: 5, fabric: 'wool', seasons: ['winter'], academy: 'overcoat', outerShape: 'coat', body: 'flattering', estPrice: 12000 },
+  { id: 'nehru', label: 'Nehru jacket', slot: 'outer', wardrobe: 'Other jackets', formality: 4, fabric: 'silk', seasons: ALL, academy: 'nehru', outerShape: 'nehru', body: 'flattering', bodyNote: 'A sleeveless structured vest over a kurta adds a frame to the torso. Leave it unbuttoned at the bottom if it pulls.', estPrice: 3500 },
+  { id: 'bandhgala', label: 'Bandhgala jacket', slot: 'outer', wardrobe: 'Other jackets', formality: 5, fabric: 'wool-poly', seasons: COOL, academy: 'bandhgala', outerShape: 'blazer', body: 'flattering', estPrice: 12000 },
+  // Bottoms
+  { id: 'chinos', label: 'Chinos', slot: 'bottom', wardrobe: 'Chinos', formality: 3, fabric: 'cotton-elastane', seasons: ALL, academy: 'chinos', legShape: 'straight', body: 'flattering', estPrice: 2200 },
+  { id: 'pleated', label: 'Pleated trousers', slot: 'bottom', wardrobe: 'Formal trousers', formality: 4, fabric: 'wool-poly', seasons: ALL, academy: 'pleated-trousers', legShape: 'straight', body: 'flattering', bodyNote: 'Pleats add room through the hip and thigh, and a higher rise sits above the softest part of the stomach. These are very good for you.', estPrice: 3500 },
+  { id: 'formal-trousers', label: 'Formal trousers', slot: 'bottom', wardrobe: 'Formal trousers', formality: 5, fabric: 'wool-poly', seasons: ALL, academy: 'dress-trousers', legShape: 'straight', body: 'flattering', estPrice: 3000 },
+  { id: 'linen-trousers', label: 'Linen trousers', slot: 'bottom', wardrobe: 'Linen trousers', formality: 3, fabric: 'linen', seasons: WARM, academy: 'linen-trousers', legShape: 'relaxed', body: 'flattering', estPrice: 2800 },
+  { id: 'jeans-slim-straight', label: 'Slim-straight jeans', slot: 'bottom', wardrobe: 'Jeans', formality: 2, fabric: 'cotton-elastane', seasons: ALL, academy: 'slim-straight-jeans', legShape: 'straight', body: 'flattering', estPrice: 2800 },
+  { id: 'jeans-straight', label: 'Straight-fit jeans', slot: 'bottom', wardrobe: 'Jeans', formality: 2, fabric: 'cotton', seasons: ALL, academy: 'straight-jeans', legShape: 'straight', body: 'flattering', estPrice: 2800 },
+  { id: 'cargo', label: 'Tapered cargo pants', slot: 'bottom', wardrobe: 'Cargo pants', formality: 1, fabric: 'cotton', seasons: ALL, academy: 'cargo', legShape: 'tapered', body: 'careful', bodyNote: 'Side pockets add width at the thigh. Choose flat, low-profile pockets.', estPrice: 2200 },
+  { id: 'gurkha', label: 'Gurkha trousers', slot: 'bottom', wardrobe: 'Formal trousers', formality: 4, fabric: 'linen-cotton', seasons: WARM, academy: 'gurkha', legShape: 'straight', body: 'careful', bodyNote: 'The high, buckled waistband draws attention to the waist. It is advanced, and usually better after the waist comes down further.', estPrice: 4000 },
+  { id: 'joggers', label: 'Tailored joggers', slot: 'bottom', wardrobe: 'Joggers', formality: 1, fabric: 'cotton-elastane', seasons: ALL, academy: 'joggers', legShape: 'jogger', body: 'neutral', estPrice: 1800 },
+  { id: 'drawstring', label: 'Drawstring trousers', slot: 'bottom', wardrobe: 'Linen trousers', formality: 2, fabric: 'linen-cotton', seasons: WARM, academy: 'drawstring', legShape: 'relaxed', body: 'neutral', estPrice: 2000 },
+  { id: 'shorts', label: 'Chino shorts', slot: 'bottom', wardrobe: 'Shorts', formality: 1, fabric: 'cotton', seasons: ['summer'], academy: 'shorts', legShape: 'shorts', body: 'neutral', bodyNote: 'Use a 7–9 inch inseam ending just above the knee. Too short exaggerates the thigh-to-torso proportion.', estPrice: 1500 },
+  { id: 'churidar', label: 'Churidar / straight pyjama', slot: 'bottom', wardrobe: 'Traditional bottoms', formality: 4, fabric: 'cotton', seasons: ALL, academy: 'cotton-kurta', legShape: 'tapered', body: 'neutral', estPrice: 1000 },
+  { id: 'corduroy', label: 'Corduroy trousers', slot: 'bottom', wardrobe: 'Chinos', formality: 3, fabric: 'cotton', seasons: ['winter'], academy: 'corduroy-trousers', legShape: 'straight', body: 'neutral', estPrice: 3000 },
+  // Footwear
+  { id: 'sneaker-white', label: 'White leather sneakers', slot: 'footwear', wardrobe: 'White sneakers', formality: 2, fabric: 'leather', seasons: ['summer', 'winter', 'transitional'], estPrice: 3500 },
+  { id: 'sneaker-suede', label: 'Suede / neutral sneakers', slot: 'footwear', wardrobe: 'Neutral sneakers', formality: 2, fabric: 'suede', seasons: ['winter', 'transitional'], estPrice: 3500 },
+  { id: 'loafer', label: 'Leather penny loafers', slot: 'footwear', wardrobe: 'Penny loafers', formality: 4, fabric: 'leather', seasons: ALL, estPrice: 4500 },
+  { id: 'loafer-suede', label: 'Suede loafers', slot: 'footwear', wardrobe: 'Loafers', formality: 3, fabric: 'suede', seasons: ['summer', 'winter', 'transitional'], estPrice: 4000 },
+  { id: 'derby', label: 'Derby shoes', slot: 'footwear', wardrobe: 'Derby shoes', formality: 4, fabric: 'leather', seasons: ALL, estPrice: 5000 },
+  { id: 'oxford-shoe', label: 'Oxford shoes', slot: 'footwear', wardrobe: 'Oxford shoes', formality: 5, fabric: 'leather', seasons: ALL, estPrice: 6000 },
+  { id: 'chelsea', label: 'Chelsea boots', slot: 'footwear', wardrobe: 'Chelsea boots', formality: 3, fabric: 'suede', seasons: ['winter', 'transitional'], estPrice: 5500 },
+  { id: 'desert', label: 'Desert boots', slot: 'footwear', wardrobe: 'Chelsea boots', formality: 2, fabric: 'suede', seasons: ['winter', 'transitional'], estPrice: 4500 },
+  { id: 'espadrille', label: 'Espadrilles', slot: 'footwear', wardrobe: 'Loafers', formality: 2, fabric: 'cotton', seasons: ['summer'], estPrice: 2000 },
+  { id: 'sandal', label: 'Leather sandals', slot: 'footwear', wardrobe: 'Sandals', formality: 1, fabric: 'leather', seasons: ['summer', 'monsoon'], estPrice: 2000 },
+  { id: 'mojari', label: 'Mojari / jutti', slot: 'footwear', wardrobe: 'Traditional footwear', formality: 4, fabric: 'leather', seasons: ALL, estPrice: 2000 },
+  { id: 'kolhapuri', label: 'Kolhapuri chappals', slot: 'footwear', wardrobe: 'Traditional footwear', formality: 3, fabric: 'leather', seasons: ['summer', 'transitional'], estPrice: 1500 },
+  { id: 'slipon', label: 'Canvas slip-ons', slot: 'footwear', wardrobe: 'Neutral sneakers', formality: 1, fabric: 'cotton', seasons: ['summer', 'transitional'], estPrice: 1800 },
+  // Accessories
+  { id: 'belt-leather', label: 'Leather belt', slot: 'accessory', wardrobe: 'Belts', formality: 4, fabric: 'leather', seasons: ALL, estPrice: 1500 },
+  { id: 'belt-woven', label: 'Woven / braided belt', slot: 'accessory', wardrobe: 'Belts', formality: 2, fabric: 'leather', seasons: ['summer', 'transitional'], estPrice: 1500 },
+  { id: 'watch-leather', label: 'Leather-strap watch', slot: 'accessory', wardrobe: 'Watches', formality: 4, fabric: 'leather', seasons: ALL, estPrice: 6000 },
+  { id: 'watch-steel', label: 'Bracelet watch', slot: 'accessory', wardrobe: 'Watches', formality: 4, fabric: 'metal', seasons: ALL, estPrice: 8000 },
+  { id: 'watch-smart', label: 'Smartwatch', slot: 'accessory', wardrobe: 'Watches', formality: 1, fabric: 'metal', seasons: ALL, estPrice: 0 },
+  { id: 'glasses', label: 'Thin metal eyeglasses', slot: 'accessory', wardrobe: 'Eyeglasses', formality: 3, fabric: 'metal', seasons: ALL, estPrice: 0 },
+  { id: 'sunglasses', label: 'Aviator sunglasses', slot: 'accessory', wardrobe: 'Sunglasses', formality: 2, fabric: 'metal', seasons: ['summer', 'transitional'], estPrice: 3000 },
+  { id: 'bracelet', label: 'Leather bracelet', slot: 'accessory', wardrobe: 'Bracelets', formality: 2, fabric: 'leather', seasons: ALL, estPrice: 800 },
+  { id: 'pocket-square', label: 'Pocket square', slot: 'accessory', wardrobe: 'Pocket squares', formality: 5, fabric: 'linen', seasons: ALL, estPrice: 600 },
+  { id: 'tie', label: 'Tie', slot: 'accessory', wardrobe: 'Ties', formality: 5, fabric: 'silk', seasons: ALL, estPrice: 1500 },
+  { id: 'backpack', label: 'Backpack', slot: 'accessory', wardrobe: 'Backpacks', formality: 1, fabric: 'nylon', seasons: ALL, estPrice: 3000 },
+  { id: 'weekender', label: 'Leather weekender / crossbody', slot: 'accessory', wardrobe: 'Bags', formality: 3, fabric: 'leather', seasons: ALL, estPrice: 5000 },
+  { id: 'cufflinks', label: 'Cufflinks', slot: 'accessory', wardrobe: 'Cufflinks', formality: 5, fabric: 'metal', seasons: ALL, estPrice: 1200 },
+  { id: 'stole', label: 'Festive stole / dupatta', slot: 'accessory', wardrobe: 'Other accessories', formality: 4, fabric: 'silk', seasons: ALL, estPrice: 1500 },
+];
+
+export const kindById = Object.fromEntries(kinds.map((k) => [k.id, k])) as Record<string, Kind>;
+
+export const wardrobeTree: Record<string, string[]> = {
+  Tops: ['T-shirts', 'Polo T-shirts', 'Henley T-shirts', 'Linen shirts', 'Cotton shirts', 'Oxford shirts', 'Twill shirts', 'Formal shirts', 'Printed shirts', 'Overshirts', 'Sweaters', 'Sweatshirts', 'Hoodies', 'Kurtas', 'Other tops'],
+  Bottoms: ['Chinos', 'Jeans', 'Formal trousers', 'Linen trousers', 'Cargo pants', 'Joggers', 'Shorts', 'Traditional bottoms', 'Other bottoms'],
+  Outerwear: ['Blazers', 'Bomber jackets', 'Denim jackets', 'Overshirts', 'Lightweight jackets', 'Cardigans', 'Other jackets'],
+  Footwear: ['White sneakers', 'Neutral sneakers', 'Leather sneakers', 'Loafers', 'Penny loafers', 'Derby shoes', 'Oxford shoes', 'Chelsea boots', 'Sandals', 'Traditional footwear'],
+  Accessories: ['Watches', 'Sunglasses', 'Eyeglasses', 'Belts', 'Wallets', 'Bracelets', 'Rings', 'Necklaces', 'Bags', 'Backpacks', 'Messenger bags', 'Pocket squares', 'Ties', 'Cufflinks', 'Caps', 'Other accessories'],
+};
+
+export const groupSlot: Record<string, 'top' | 'bottom' | 'outer' | 'footwear' | 'accessory'> = {
+  Tops: 'top', Bottoms: 'bottom', Outerwear: 'outer', Footwear: 'footwear', Accessories: 'accessory',
+};
