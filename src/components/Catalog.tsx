@@ -26,7 +26,7 @@ export function LookImage({ o, eager, onClick }: { o: Outfit; eager?: boolean; o
   return (
     <div className="flex h-full w-full items-end justify-center pt-6" onClick={onClick}>
       <OutfitFigure className="h-[92%]" top={by('top')} bottom={by('bottom')} footwear={by('footwear')} outer={by('outer')} accessories={comps.filter((x) => x.slot === 'accessory').map((x) => x.piece!).filter(Boolean)} m={state.measurements} />
-      <span className="absolute bottom-2 left-3 text-[9px] uppercase tracking-[0.2em] text-choc-soft">Illustration · photo pending</span>
+      <span className="absolute left-3 top-3 bg-ivory/80 px-1.5 py-0.5 text-[9px] uppercase tracking-[0.2em] text-choc-soft">Illustration · photo pending</span>
     </div>
   );
 }

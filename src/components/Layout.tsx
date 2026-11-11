@@ -32,14 +32,14 @@ export function Layout({ children }: { children: ReactNode }) {
   }, []);
   const link = ({ isActive }: { isActive: boolean }) => `relative py-1 text-[12px] uppercase tracking-[0.18em] transition ${isActive ? 'text-choc after:absolute after:inset-x-0 after:-bottom-[21px] after:h-px after:bg-choc' : 'text-choc-soft hover:text-choc'}`;
   return (
-    <div className="min-h-screen bg-ivory text-choc">
+    <div className="min-h-screen overflow-x-clip bg-ivory text-choc">
       <header className="sticky top-0 z-40 border-b border-camel-light/70 bg-ivory/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-5 md:px-10">
           <NavLink to="/" className="shrink-0">
             <div className="font-serif text-[26px] font-semibold leading-none tracking-[0.06em]">STYLE OS</div>
             <div className="mt-1 text-[9px] uppercase tracking-[0.32em] text-choc-soft">The personal catalogue</div>
           </NavLink>
-          <nav className="hidden items-center gap-8 lg:flex">
+          <nav className="hidden items-center gap-7 xl:flex">
             {primary.map((p) => <NavLink key={p.to} to={p.to} end={p.to === '/'} className={link}>{p.label}</NavLink>)}
             <div ref={ref} className="relative">
               <button onClick={() => setMoreOpen((v) => !v)} className="flex items-center gap-1 text-[12px] uppercase tracking-[0.18em] text-choc-soft hover:text-choc">More <ChevronDown className="h-3.5 w-3.5" /></button>
@@ -56,11 +56,11 @@ export function Layout({ children }: { children: ReactNode }) {
             </div>
             <NavLink to="/search" aria-label="Search" className="text-choc-soft hover:text-choc"><Search className="h-4 w-4" /></NavLink>
           </nav>
-          <button aria-label="Menu" onClick={() => setOpen(true)} className="lg:hidden"><Menu /></button>
+          <button aria-label="Menu" onClick={() => setOpen(true)} className="xl:hidden"><Menu /></button>
         </div>
       </header>
       {open && (
-        <div className="fixed inset-0 z-50 lg:hidden">
+        <div className="fixed inset-0 z-50 xl:hidden">
           <div className="absolute inset-0 bg-black/40" onClick={() => setOpen(false)} />
           <div className="absolute inset-y-0 right-0 w-80 overflow-y-auto bg-ivory px-6 py-6">
             <button aria-label="Close" onClick={() => setOpen(false)} className="absolute right-5 top-5"><X /></button>
