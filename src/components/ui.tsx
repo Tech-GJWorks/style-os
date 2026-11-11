@@ -6,8 +6,8 @@ import { colourById } from '../data/colours';
 export function PageHeader({ eyebrow, title, children }: { eyebrow?: string; title: string; children?: ReactNode }) {
   return (
     <header className="mb-8 border-b border-camel-light pb-6">
-      {eyebrow && <p className="text-xs uppercase tracking-[0.25em] text-rust">{eyebrow}</p>}
-      <h1 className="mt-1 font-serif text-4xl font-semibold text-choc md:text-5xl">{title}</h1>
+      {eyebrow && <p className="text-[10px] uppercase tracking-[0.3em] text-olive">{eyebrow}</p>}
+      <h1 className="mt-1 font-serif text-5xl text-choc md:text-6xl">{title}</h1>
       {children && <div className="mt-3 max-w-3xl text-[15px] leading-relaxed text-choc-soft">{children}</div>}
     </header>
   );
@@ -16,7 +16,7 @@ export function PageHeader({ eyebrow, title, children }: { eyebrow?: string; tit
 export function Section({ title, sub, children, id }: { title: string; sub?: ReactNode; children: ReactNode; id?: string }) {
   return (
     <section id={id} className="mb-12">
-      <h2 className="font-serif text-2xl font-semibold text-choc md:text-3xl">{title}</h2>
+      <h2 className="font-serif text-3xl text-choc">{title}</h2>
       {sub && <p className="mt-1 max-w-3xl text-sm text-choc-soft">{sub}</p>}
       <div className="mt-5">{children}</div>
     </section>
@@ -24,7 +24,7 @@ export function Section({ title, sub, children, id }: { title: string; sub?: Rea
 }
 
 export function Card({ children, className = '' }: { children: ReactNode; className?: string }) {
-  return <div className={`rounded-xl border border-camel-light/70 bg-paper p-5 shadow-[0_1px_0_rgba(59,42,32,0.04)] ${className}`}>{children}</div>;
+  return <div className={`border border-camel-light/70 bg-paper p-5 ${className}`}>{children}</div>;
 }
 
 export function Badge({ children, tone = 'sand' }: { children: ReactNode; tone?: 'sand' | 'olive' | 'rust' | 'teal' | 'grey' | 'amber' | 'green' | 'red' }) {
@@ -104,8 +104,8 @@ export function Field({ label, children, hint }: { label: string; children: Reac
 }
 
 export const inputCls = 'w-full rounded-lg border border-camel-light bg-white px-3 py-2 text-sm text-choc outline-none focus:border-olive';
-export const btn = 'inline-flex items-center gap-2 rounded-full bg-olive px-4 py-2 text-sm font-medium text-ivory hover:bg-olive-deep disabled:opacity-40';
-export const btnGhost = 'inline-flex items-center gap-2 rounded-full border border-camel-light bg-paper px-4 py-2 text-sm text-choc hover:border-camel';
+export const btn = 'inline-flex items-center gap-2 bg-choc px-5 py-2.5 text-[11px] uppercase tracking-[0.18em] text-ivory hover:bg-olive-deep disabled:opacity-40';
+export const btnGhost = 'inline-flex items-center gap-2 border border-camel-light px-4 py-2 text-[11px] uppercase tracking-[0.15em] text-choc hover:border-choc';
 
 export function Dots({ n, max = 5 }: { n: number; max?: number }) {
   return (
@@ -121,7 +121,7 @@ export function Note({ children, tone = 'info' }: { children: ReactNode; tone?: 
 
 export function Table({ head, rows }: { head: ReactNode[]; rows: ReactNode[][] }) {
   return (
-    <div className="overflow-x-auto rounded-xl border border-camel-light/70 bg-paper">
+    <div className="overflow-x-auto border border-camel-light/70 bg-paper">
       <table className="w-full min-w-[560px] text-left text-sm">
         <thead className="bg-sand/60 text-xs uppercase tracking-wider text-choc-soft">
           <tr>{head.map((h, i) => <th key={i} className="px-3 py-2.5 font-medium">{h}</th>)}</tr>

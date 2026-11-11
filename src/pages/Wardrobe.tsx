@@ -55,8 +55,8 @@ export function Wardrobe() {
                 <h2 className="mb-3 font-serif text-2xl font-semibold">{grp}</h2>
                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                   {subs.map((sub) => { const sp = ps.filter((p) => p.kind.wardrobe === sub); return sp.length ? (
-                    <Card key={sub} className="p-4"><div className="mb-1 text-xs font-semibold uppercase tracking-wider text-choc-soft">{sub}</div>
-                      <div className="divide-y divide-camel-light/50">{sp.map((p) => <div key={p.id} className="flex items-center gap-2"><Swatch hex={p.colour.hex} size="sm" /><div className="flex-1"><PieceStatusRow pieceId={p.id} label={p.name} /></div></div>)}</div>
+                    <Card key={sub} className="min-w-0 p-4"><div className="mb-1 text-xs font-semibold uppercase tracking-wider text-choc-soft">{sub}</div>
+                      <div className="divide-y divide-camel-light/50">{sp.map((p) => <div key={p.id} className="flex items-center gap-2"><Swatch hex={p.colour.hex} size="sm" /><div className="min-w-0 flex-1"><PieceStatusRow pieceId={p.id} label={p.name} /></div></div>)}</div>
                     </Card>) : null; })}
                 </div>
               </div>

@@ -87,11 +87,14 @@ const BROWNS = new Set(['brown', 'tan', 'chocolate', 'deep-brown', 'camel', 'aub
 export function colourLogic(a?: Colour, b?: Colour): string {
   if (!a || !b) return '';
   if (a.id === b.id) return `Monochrome ${a.name.toLowerCase()}: one colour, one column.`;
-  if (a.family === 'neutral' && b.family === 'neutral') return `Tonal neutrals (${a.name.toLowerCase()} + ${b.name.toLowerCase()}): calm and elongating.`;
+  // Navy, charcoal, indigo, black and white behave as neutrals in menswear even though they are cool.
+  const N = (c: Colour) => c.family === 'neutral' || ['navy', 'charcoal', 'indigo', 'black', 'white', 'grey', 'mid-denim'].includes(c.id);
+  if (N(a) && N(b) && (a.family === 'cool' || b.family === 'cool')) return `A classic neutral pairing (${a.name.toLowerCase()} over ${b.name.toLowerCase()}): ${a.depth < b.depth ? 'light above dark keeps attention on the face and grounds the outfit' : a.depth > b.depth ? 'the darker top frames the shoulders while the lighter trouser keeps it fresh' : 'similar depth top to toe gives one long, calm column'}.`;
+  if (N(a) && N(b)) return `Tonal neutrals (${a.name.toLowerCase()} + ${b.name.toLowerCase()}): calm and elongating.`;
   if (a.family === 'warm' && b.family === 'cool') return `Complementary temperature: warm ${a.name.toLowerCase()} above cool ${b.name.toLowerCase()}. The warm colour near the face lifts your skin tone, and the cool colour below recedes.`;
   if (a.family === 'cool' && b.family === 'warm') return `Cool ${a.name.toLowerCase()} above warm ${b.name.toLowerCase()}. It is balanced, but put a warm accent (leather, metal) near the top.`;
-  if (b.family === 'neutral') return `Accent and anchor: ${a.name.toLowerCase()} carries the colour, and ${b.name.toLowerCase()} grounds it.`;
-  if (a.family === 'neutral') return `Neutral top, coloured bottom (${b.name.toLowerCase()}). This draws the eye down, so keep it for casual looks.`;
+  if (N(b)) return `Accent and anchor: ${a.name.toLowerCase()} carries the colour, and ${b.name.toLowerCase()} grounds it.`;
+  if (N(a)) return `Neutral top, coloured bottom (${b.name.toLowerCase()}). This draws the eye down, so keep it for casual looks.`;
   return `Two coloured pieces (${a.name.toLowerCase()} + ${b.name.toLowerCase()}): the expressive end of your palette.`;
 }
 

@@ -1,11 +1,9 @@
-import { Link } from 'react-router-dom';
-import { Heart } from 'lucide-react';
 import type { Outfit, Ownership } from '../data/types';
 import { useStore } from '../lib/store';
-import { completion, inr, outfitComponents, pieceStatus } from '../lib/engine';
+import { outfitComponents, pieceStatus } from '../lib/engine';
 import { OutfitFigure } from './OutfitFigure';
-import { Badge, StatusPicker, Swatch } from './ui';
-import { collections } from '../data/outfits';
+import { Badge, StatusPicker } from './ui';
+import { LookCard } from './Catalog';
 import { assetByOutfit, loadManifest } from '../data/imageAssets';
 import { useEffect, useState } from 'react';
 
@@ -48,40 +46,8 @@ export function CompletionBadge({ status, pct }: { status: string; pct: number }
   return <Badge tone={tone}>{status} · {pct}%</Badge>;
 }
 
-export function OutfitCard({ o, detailed }: { o: Outfit; detailed?: boolean }) {
-  const { state } = useStore();
-  const { toggleFav, isFav } = useOutfitActions();
-  const comps = outfitComponents(state, o);
-  const c = completion(state, o);
-  return (
-    <div className="group flex flex-col overflow-hidden rounded-xl border border-camel-light/70 bg-paper">
-      <Link to={`/outfit/${o.id}`} className="relative block bg-gradient-to-b from-sand/70 to-paper px-6 pt-4">
-        <OutfitVisual o={o} />
-      </Link>
-      <div className="flex flex-1 flex-col p-4">
-        <div className="flex items-start justify-between gap-2">
-          <Link to={`/outfit/${o.id}`} className="font-serif text-lg font-semibold leading-tight hover:text-rust">{o.name}</Link>
-          <button aria-label="Favourite" onClick={() => toggleFav(o.id)}><Heart className={`h-5 w-5 ${isFav(o.id) ? 'fill-rust text-rust' : 'text-camel'}`} /></button>
-        </div>
-        <div className="mt-1 text-xs text-choc-soft">{collections.find((x) => x.id === o.collection)?.name} · {o.occasions.slice(0, 3).join(', ')}</div>
-        <div className="mt-3 flex items-center gap-1.5">
-          {[o.top, o.outer, o.bottom, o.footwear].filter(Boolean).map((r) => { const p = comps.find((x) => x.original === r)?.piece; return p ? <Swatch key={r} hex={p.colour.hex} size="sm" /> : null; })}
-          <span className="ml-auto"><CompletionBadge status={c.status} pct={c.pct} /></span>
-        </div>
-        {detailed && (
-          <ul className="mt-3 space-y-1 text-xs">
-            {comps.filter((x) => x.required).map((x) => (
-              <li key={x.key} className="flex items-center justify-between gap-2">
-                <span className={x.owned ? 'text-choc' : 'text-choc-soft'}>{x.piece?.name ?? x.ref}</span>
-                <span className={`h-2 w-2 shrink-0 rounded-full ${x.owned ? 'bg-emerald-600' : pieceStatus(state, x.ref) === 'WANT' || pieceStatus(state, x.ref) === 'PLANNED' ? 'bg-amber-500' : 'bg-stone-300'}`} />
-              </li>
-            ))}
-          </ul>
-        )}
-        {c.missing.length > 0 && <div className="mt-auto pt-3 text-xs text-choc-soft">Missing {c.missing.length} · est. {inr(c.cost)} <span className="opacity-70">(indicative)</span></div>}
-      </div>
-    </div>
-  );
+export function OutfitCard({ o }: { o: Outfit; detailed?: boolean }) {
+  return <LookCard o={o} />;
 }
 
 export function PieceStatusRow({ pieceId, label, required = true }: { pieceId: string; label?: string; required?: boolean }) {
@@ -89,8 +55,8 @@ export function PieceStatusRow({ pieceId, label, required = true }: { pieceId: s
   const { setStatus } = useOutfitActions();
   const linked = state.items.some((i) => i.status === 'OWNED' && `${i.kindId}:${i.colourId}` === pieceId);
   return (
-    <div className="flex items-center justify-between gap-3 py-2">
-      <div className="min-w-0">
+    <div className="flex min-w-0 items-center justify-between gap-3 py-2">
+      <div className="min-w-0 flex-1">
         <div className="truncate text-sm">{label}</div>
         {!required && <div className="text-[11px] text-choc-soft">Optional</div>}
         {linked && <div className="text-[11px] text-emerald-700">Owned via a wardrobe item</div>}

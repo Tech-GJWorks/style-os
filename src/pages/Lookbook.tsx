@@ -1,77 +1,47 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { collections, outfits } from '../data/outfits';
-import { assetByOutfit } from '../data/imageAssets';
-import { useStore } from '../lib/store';
-import { completion, outfitComponents } from '../lib/engine';
-import { fabricById } from '../data/fabrics';
-import { Badge, Card, Dots, PageHeader } from '../components/ui';
-import { OutfitVisual, useRenders } from '../components/OutfitCard';
+import { Eyebrow, LookImage } from '../components/Catalog';
+import { useRenders } from '../components/OutfitCard';
+
+const groups: { name: string; ids: string[] }[] = [
+  { name: 'Shirts', ids: ['linen', 'oxford', 'cotton', 'twill', 'utility', 'band', 'printed'] },
+  { name: 'Knits & tees', ids: ['polo', 'tees', 'knitwear'] },
+  { name: 'Trousers', ids: ['chinos', 'jeans', 'formal-trousers', 'cargo'] },
+  { name: 'Layers & tailoring', ids: ['overshirts', 'jackets', 'blazers', 'suits'] },
+  { name: 'Moments', ids: ['date', 'travel', 'summer', 'winter'] },
+  { name: 'Indian wear', ids: ['traditional', 'wedding'] },
+];
 
 export function Lookbook() {
-  const [col, setCol] = useState(collections[0].id);
   const renders = useRenders();
-  const c = collections.find((x) => x.id === col)!;
-  const list = outfits.filter((o) => o.collection === col);
+  const looks = (cid: string) => outfits.filter((o) => o.collection === cid);
+  const cover = (cid: string) => looks(cid).filter((o) => renders.has(o.id));
   return (
     <div>
-      <PageHeader eyebrow="Image library · one sheet per collection" title="Outfit Lookbook">
-        {collections.length} independent collections with {outfits.length} outfits, each shown head to toe with its full specification. Personalised photo renders: <b>{renders.size} of {outfits.length} available</b>. The rest show a proportion illustration drawn from your measurements until a render exists (see <Link to="/visualize" className="underline">Virtual Try-On</Link>).
-      </PageHeader>
-      <div className="mb-6 flex flex-wrap gap-2">
-        {collections.map((x) => <button key={x.id} onClick={() => setCol(x.id)} className={`rounded-full border px-3 py-1 text-xs ${col === x.id ? 'border-olive bg-olive text-ivory' : 'border-camel-light bg-paper hover:border-camel'}`}>{x.name}</button>)}
-      </div>
-      <h2 className="font-serif text-3xl font-semibold">{c.name}</h2>
-      <p className="mb-6 mt-1 text-sm text-choc-soft">{c.blurb}</p>
-      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {list.map((o) => <SheetCard key={o.id} id={o.id} />)}
-      </div>
+      <div className="mb-12 max-w-2xl"><Eyebrow>{collections.length} collections · {outfits.length} looks</Eyebrow><h1 className="mt-2 font-serif text-5xl md:text-6xl">Collections</h1><p className="mt-3 text-[15px] leading-relaxed text-choc-soft">Each collection explores one garment or moment in depth, with four to six complete looks photographed on you, every one broken down piece by piece.</p></div>
+      {groups.map((g) => (
+        <section key={g.name} className="mb-16">
+          <h2 className="mb-6 border-b border-camel-light/70 pb-3 font-serif text-3xl">{g.name}</h2>
+          <div className="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+            {g.ids.map((id) => {
+              const c = collections.find((x) => x.id === id)!;
+              const cv = cover(id);
+              const main = cv[0] ?? looks(id)[0];
+              const thumbs = (cv.length > 1 ? cv : looks(id)).slice(1, 4);
+              return (
+                <Link key={id} to={`/outfits?c=${id}`} className="group block">
+                  <div className="grid aspect-[1/1] grid-cols-[2fr_1fr] gap-1.5">
+                    <div className="relative h-full min-h-0 overflow-hidden bg-sand"><div className="h-full transition duration-500 group-hover:scale-[1.03]"><LookImage o={main} /></div></div>
+                    <div className="grid h-full min-h-0 grid-rows-3 gap-1.5">{thumbs.map((t) => <div key={t.id} className="relative min-h-0 overflow-hidden bg-sand"><LookImage o={t} /></div>)}</div>
+                  </div>
+                  <div className="mt-4 flex items-baseline justify-between"><span className="font-serif text-2xl">{c.name}</span><span className="text-[10px] uppercase tracking-[0.2em] text-choc-soft">{looks(id).length} looks</span></div>
+                  <p className="mt-1 text-sm text-choc-soft">{c.blurb}</p>
+                </Link>
+              );
+            })}
+          </div>
+        </section>
+      ))}
     </div>
-  );
-}
-
-export function SheetCard({ id }: { id: string }) {
-  const { state } = useStore();
-  const o = outfits.find((x) => x.id === id)!;
-  const comps = outfitComponents(state, o);
-  const get = (k: string) => comps.find((x) => x.key === k)?.piece;
-  const top = get('top')!, bottom = get('bottom')!, shoes = get('footwear')!, outer = get('outer');
-  const acc = comps.filter((x) => x.slot === 'accessory');
-  const c = completion(state, o);
-  const rows: [string, string][] = [
-    ['Garment', top.kind.label + (outer ? ` + ${outer.kind.label.toLowerCase()}` : '')],
-    ['Colour', `${top.colour.name}${outer ? ` / ${outer.colour.name}` : ''}`],
-    ['Fabric', [top, outer].filter(Boolean).map((p) => fabricById[p!.kind.fabric]?.name ?? p!.kind.fabric).join(', ')],
-    ['Fit', top.kind.body === 'careful' ? `Size for drape (${top.kind.bodyNote ?? ''})` : 'Regular, skims the body'],
-    ['Trousers', bottom.name],
-    ['Footwear', shoes.name],
-    ['Accessories', acc.map((a) => a.piece?.name + (a.required ? '' : ' (optional)')).join(', ') || '—'],
-    ['Season', o.seasons.join(', ')],
-    ['Weather', o.weather],
-    ['Occasion', o.occasions.join(', ')],
-    ['Impression', o.impression.join(', ')],
-    ['Price', o.price],
-  ];
-  return (
-    <Card className="flex flex-col p-0">
-      <Link to={`/outfit/${o.id}`} className="relative block bg-gradient-to-b from-sand to-paper px-6 pt-4">
-        <OutfitVisual o={o} className="h-72" />
-        <span className="absolute left-3 top-3 rounded bg-choc px-2 py-0.5 font-mono text-[11px] text-ivory">OUTFIT {o.id.toUpperCase()}</span>
-      </Link>
-      <div className="flex-1 p-4">
-        <Link to={`/outfit/${o.id}`} className="font-serif text-xl font-semibold leading-tight hover:text-rust">{o.name}</Link>
-        <div className="mt-1 flex flex-wrap items-center gap-2">
-          <Badge tone={c.status === 'Complete' ? 'green' : c.status === 'Almost complete' ? 'amber' : 'grey'}>{c.status}</Badge>
-          {o.source === 'report' && <Badge tone="teal">From your report</Badge>}
-          {o.source === 'photo' && <Badge tone="rust">From your photo</Badge>}
-          <span className="flex items-center gap-1 text-[11px] text-choc-soft">Difficulty <Dots n={o.difficulty} max={3} /></span>
-        </div>
-        <dl className="mt-3 grid grid-cols-[88px_1fr] gap-x-2 gap-y-1 text-xs">
-          {rows.map(([k, v]) => <div key={k} className="contents"><dt className="text-choc-soft">{k}</dt><dd className="text-choc">{v}</dd></div>)}
-        </dl>
-        <p className="mt-3 border-t border-camel-light/60 pt-3 text-sm leading-relaxed text-choc-soft">{o.why}</p>
-        <p className="mt-2 font-mono text-[10px] text-choc-soft/70">asset: {assetByOutfit[o.id].path}</p>
-      </div>
-    </Card>
   );
 }

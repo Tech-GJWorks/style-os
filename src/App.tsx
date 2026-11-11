@@ -2,6 +2,7 @@ import { HashRouter, Route, Routes } from 'react-router-dom';
 import { StoreProvider } from './lib/store';
 import { Layout } from './components/Layout';
 import { Dashboard } from './pages/Dashboard';
+import { Home } from './pages/Home';
 import { Body } from './pages/Body';
 import { ColourPage } from './pages/Colour';
 import { Academy, GarmentPage } from './pages/Academy';
@@ -30,7 +31,8 @@ export function App() {
       <HashRouter>
         <Layout>
           <Routes>
-            <Route path="/" element={<Dashboard />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/body" element={<Body />} />
             <Route path="/colour" element={<ColourPage />} />
             <Route path="/academy" element={<Academy />} />
@@ -54,7 +56,7 @@ export function App() {
             <Route path="/trends" element={<Trends />} />
             <Route path="/search" element={<SearchPage />} />
             <Route path="/data" element={<DataPage />} />
-            <Route path="*" element={<Dashboard />} />
+            <Route path="*" element={<Home />} />
           </Routes>
         </Layout>
       </HashRouter>

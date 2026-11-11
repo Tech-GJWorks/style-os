@@ -6,3 +6,6 @@ html { -webkit-text-size-adjust: 100%; }
 body { background: #F7F1E6; font-family: Inter, system-ui, sans-serif; }
 select { background-image: none; }
 .prose-tight p + p { margin-top: 0.6rem; }
+
+/* Grid children default to min-width:auto, which lets wide tables/selects push the page wider than the phone. */
+.grid > * { min-width: 0; }
