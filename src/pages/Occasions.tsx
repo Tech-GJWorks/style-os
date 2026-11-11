@@ -14,7 +14,7 @@ export function rankForOccasion(state: ReturnType<typeof useStore>['state'], o: 
   return outfits
     .map((x) => {
       const ev = evaluateOutfit(state, x, { occasionRange: o.formality });
-      let s = ev.score + (x.occasions.some((t) => o.tags.includes(t)) ? 40 : 0) + completion(state, x).pct / 20 + (renders?.has(x.id) ? 5 : 0);
+      let s = ev.score + (x.occasions.some((t) => o.tags.includes(t)) ? 40 : 0) + completion(state, x).pct / 20 + (renders?.has(x.id) ? 60 : 0);
       if (ev.checks.some((c) => c.label === 'Occasion' && c.status !== 'ok')) s -= 30;
       return { x, s };
     })

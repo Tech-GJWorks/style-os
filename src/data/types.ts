@@ -31,6 +31,8 @@ export interface Kind {
   outerShape?: 'blazer' | 'jacket' | 'overshirt' | 'cardigan' | 'nehru' | 'coat';
   legShape?: 'straight' | 'tapered' | 'relaxed' | 'shorts' | 'jogger';
   estPrice: number; // indicative mid-market INR, unverified
+  detail?: string; // exact pattern / construction wording used in image prompts
+  wornClosed?: boolean; // outer layer worn buttoned (e.g. a bandhgala)
 }
 
 export interface Piece {

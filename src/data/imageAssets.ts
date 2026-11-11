@@ -7,6 +7,7 @@ export const imageFolders: Record<string, string> = {
   'formal-trousers': 'office', blazers: 'office',
   date: 'dates', travel: 'travel', linen: 'linen', summer: 'linen',
   suits: 'formal', traditional: 'traditional', wedding: 'traditional',
+  stripes: 'shirts', checks: 'shirts', prints: 'shirts', textures: 'shirts', coords: 'casual', relaxed: 'trousers', 'indian-new': 'traditional',
   knitwear: 'seasonal', winter: 'seasonal',
 };
 

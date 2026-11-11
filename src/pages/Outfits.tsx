@@ -23,7 +23,7 @@ export function OutfitsPage() {
   const [showFilters, setShowFilters] = useState(false);
   const f = {
     edit: params.get('edit') ?? '', c: params.get('c') ?? '', colour: params.get('colour') ?? '', season: params.get('season') ?? '',
-    fabric: params.get('fabric') ?? '', own: params.get('own') ?? '', fav: params.get('fav') === '1', photo: params.get('photo') === '1', q: params.get('q') ?? '',
+    fabric: params.get('fabric') ?? '', own: params.get('own') ?? '', fav: params.get('fav') === '1', photo: params.get('photo') !== '0', q: params.get('q') ?? '',
   };
   const set = (k: string, v: string) => { const p = new URLSearchParams(params); if (v) p.set(k, v); else p.delete(k); setParams(p, { replace: true }); };
   const piecesOf = (o: Outfit) => outfitComponents(state, o).filter((c) => c.slot !== 'accessory').map((c) => c.piece!).filter(Boolean);
@@ -52,7 +52,7 @@ export function OutfitsPage() {
   return (
     <div>
       <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
-        <div><Eyebrow>The catalogue</Eyebrow><h1 className="mt-2 font-serif text-5xl md:text-6xl">{title}</h1><p className="mt-2 text-sm text-choc-soft">{list.length} looks</p></div>
+        <div><Eyebrow>The catalogue</Eyebrow><h1 className="mt-2 font-serif text-5xl md:text-6xl">{title}</h1><p className="mt-2 text-sm text-choc-soft">{list.length} looks{f.photo && outfits.length > renders.size ? ` · ${outfits.length - renders.size} new looks arriving as photos are added` : ''}</p></div>
         <div className="flex items-center gap-3">
           <input className="w-48 border-b border-camel-light bg-transparent py-2 text-sm focus:border-choc focus:outline-none" placeholder="Search looks" value={f.q} onChange={(e) => set('q', e.target.value)} />
           <button onClick={() => setShowFilters((s) => !s)} className="flex items-center gap-2 border border-choc px-4 py-2 text-[11px] uppercase tracking-[0.2em]"><SlidersHorizontal className="h-3.5 w-3.5" /> Filter</button>
@@ -71,7 +71,7 @@ export function OutfitsPage() {
           <label className="text-[10px] uppercase tracking-[0.2em] text-choc-soft">Fabric<select className={sel} value={f.fabric} onChange={(e) => set('fabric', e.target.value)}><option value="">Any</option>{fabricOpts.map((x) => <option key={x} value={x}>{fabricById[x]?.name ?? x}</option>)}</select></label>
           <label className="text-[10px] uppercase tracking-[0.2em] text-choc-soft">Ownership<select className={sel} value={f.own} onChange={(e) => set('own', e.target.value)}><option value="">Any</option><option value="complete">I own every piece</option><option value="today">Wear today (owned + in season)</option><option value="missing">Needs a purchase</option></select></label>
           <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={f.fav} onChange={(e) => set('fav', e.target.checked ? '1' : '')} /> Favourites only</label>
-          <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={f.photo} onChange={(e) => set('photo', e.target.checked ? '1' : '')} /> With photo only</label>
+          <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={f.photo} onChange={(e) => set('photo', e.target.checked ? '' : '0')} /> Photographed looks only</label>
           {active.length > 0 && <button onClick={() => setParams({}, { replace: true })} className="text-left text-[11px] uppercase tracking-[0.2em] underline">Clear all</button>}
         </div>
       )}

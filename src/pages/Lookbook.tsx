@@ -4,6 +4,7 @@ import { Eyebrow, LookImage } from '../components/Catalog';
 import { useRenders } from '../components/OutfitCard';
 
 const groups: { name: string; ids: string[] }[] = [
+  { name: 'New this season', ids: ['stripes', 'checks', 'prints', 'textures', 'coords', 'relaxed', 'indian-new'] },
   { name: 'Shirts', ids: ['linen', 'oxford', 'cotton', 'twill', 'utility', 'band', 'printed'] },
   { name: 'Knits & tees', ids: ['polo', 'tees', 'knitwear'] },
   { name: 'Trousers', ids: ['chinos', 'jeans', 'formal-trousers', 'cargo'] },
@@ -19,11 +20,11 @@ export function Lookbook() {
   return (
     <div>
       <div className="mb-12 max-w-2xl"><Eyebrow>{collections.length} collections · {outfits.length} looks</Eyebrow><h1 className="mt-2 font-serif text-5xl md:text-6xl">Collections</h1><p className="mt-3 text-[15px] leading-relaxed text-choc-soft">Each collection explores one garment or moment in depth, with four to six complete looks photographed on you, every one broken down piece by piece.</p></div>
-      {groups.map((g) => (
+      {groups.filter((g) => g.ids.some((id) => cover(id).length > 0)).map((g) => (
         <section key={g.name} className="mb-16">
           <h2 className="mb-6 border-b border-camel-light/70 pb-3 font-serif text-3xl">{g.name}</h2>
           <div className="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-            {g.ids.map((id) => {
+            {g.ids.filter((id) => cover(id).length > 0).map((id) => {
               const c = collections.find((x) => x.id === id)!;
               const cv = cover(id);
               const main = cv[0] ?? looks(id)[0];
